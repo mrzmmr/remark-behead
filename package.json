@@ -1,0 +1,24 @@
+{
+  "name": "mdast-behead",
+  "version": "1.0.0",
+  "description": "Add or remove heading levels",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tst/index.js"
+  },
+  "keywords": [
+    "mdast",
+    "behead",
+    "plugin",
+    "mdast-plugin"
+  ],
+  "author": "mrzmmr",
+  "license": "ISC",
+  "dependencies": {
+    "mdast": "^2.3.0",
+    "unist-util-visit": "^1.0.0"
+  },
+  "devDependencies": {
+    "tap": "^2.3.3"
+  }
+}
