@@ -1,6 +1,6 @@
 {
   "name": "mdast-behead",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add or remove heading levels",
   "main": "index.js",
   "scripts": {
