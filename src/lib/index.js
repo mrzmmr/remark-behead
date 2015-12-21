@@ -8,10 +8,10 @@ import {default as visit} from 'unist-util-visit'
  * Constants
  */
 
-const MINHEAD = 4
-const MAXHEAD = 1
+const MINWEIGHT = 4
+const MAXWEIGHT = 1
 const OPTIONS = {
-  depth: 0,
+  weight: 0,
   preserve: 1
 }
 
@@ -36,7 +36,7 @@ export function handleOptions(options, callback) {
  * Main transformer plugin
  */
 
-export function plugin(processor, options) {
+export function plugin(processor, options=OPTIONS) {
   options = handleOptions(options)
 
   return (ast, file) => {
@@ -46,29 +46,29 @@ export function plugin(processor, options) {
        * Reduce heading weight
        *
        * Example:
-       *   mdast.use(behead, {depth: -2}).process('# Heading')
+       *   mdast.use(behead, {weight: -2}).process('# Heading')
        *
        * Transforms to '### Heading'
        */
 
-      if (options.depth < 0) {
-        node.depth += Math.abs(options.depth)
+      if (options.weight < 0) {
+        node.depth += Math.abs(options.weight)
 
-        if (node.depth > MINHEAD) {
+        if (node.depth > MINWEIGHT) {
 
           /*
-           * Preserve option prevents heading depth reaching zero
-           * ie if preserve is false then a options.depth value >
-           * 4 will result in heading depth 0
+           * Preserve option prevents heading weight reaching zero
+           * ie if preserve is false then a options.weight value >
+           * 4 will result in heading weight 0
            *
            * Example:
-           *   mdast.use(behead, {depth: -5, preserve: false}).process('## Heading')
+           *   mdast.use(behead, {weight: -5, preserve: false}).process('## Heading')
            *
            * Transforms to ' Heading\n'
            */
 
           if (options.preserve) {
-            return node.depth = MINHEAD
+            return node.depth = MINWEIGHT
           }
           return node.depth = 0
         }
@@ -79,16 +79,16 @@ export function plugin(processor, options) {
        * Increase heading weight
        *
        * Example:
-       *   mdast.use(behead, {depth: 2}).process('### Heading')
+       *   mdast.use(behead, {weight: 2}).process('### Heading')
        *
        * Transforms to '# Heading'
        */
 
       else {
-        node.depth -= options.depth
+        node.depth -= options.weight
 
-        if (node.depth < MAXHEAD) {
-          return node.depth = MAXHEAD
+        if (node.depth < MAXWEIGHT) {
+          return node.depth = MAXWEIGHT
         }
         return node.depth
       }

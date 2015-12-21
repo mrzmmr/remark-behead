@@ -7,7 +7,7 @@ tap.test('Mdast plugin to add or remove heading levels', (plugin) => {
   plugin.test('Add 1 heading level', (assert) => {
     let expected = '## Heading\n'
     let actual = mdast
-      .use(behead, {depth: 1})
+      .use(behead, {weight: 1})
       .process('### Heading')
 
     assert.equal(actual, expected)
@@ -17,7 +17,7 @@ tap.test('Mdast plugin to add or remove heading levels', (plugin) => {
   plugin.test('Add max heading level', (assert) => {
     let expected = '# Heading\n'
     let actual = mdast
-      .use(behead, {depth: 5})
+      .use(behead, {weight: 5})
       .process('## Heading')
 
     assert.equal(actual, expected)
@@ -27,7 +27,7 @@ tap.test('Mdast plugin to add or remove heading levels', (plugin) => {
   plugin.test('Remove 1 heading level', (assert) => {
     let expected = '### Heading\n'
     let actual = mdast
-      .use(behead, {depth: -1})
+      .use(behead, {weight: -1})
       .process('## Heading')
 
     assert.equal(actual, expected)
@@ -37,7 +37,7 @@ tap.test('Mdast plugin to add or remove heading levels', (plugin) => {
   plugin.test('Remove max heading level', (assert) => {
     let expected = '#### Heading\n'
     let actual = mdast
-      .use(behead, {depth: -5})
+      .use(behead, {weight: -5})
       .process('## Heading')
 
     assert.equal(actual, expected)
@@ -47,7 +47,7 @@ tap.test('Mdast plugin to add or remove heading levels', (plugin) => {
   plugin.test('Remove max heading w/o preserve', (assert) => {
     let expected = ' Heading\n'
     let actual = mdast
-      .use(behead, {depth: -5, preserve: false})
+      .use(behead, {weight: -5, preserve: false})
       .process('## Heading')
 
     assert.equal(actual, expected)

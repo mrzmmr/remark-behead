@@ -5,8 +5,8 @@
 
 
 Behead is an mdast plugin to increase and decrease the weight of headings.
-Passing a negative value to the depth option will decrease the heading
-weight and passing a possative value to the depth option will increase the
+Passing a negative value to the weight option will decrease the heading
+weight and passing a possative value to the weight option will increase the
 heading weight.
 
 
@@ -28,16 +28,16 @@ var behead = require('mdast-behead')
 mdast.use(behead).process('## Heading')
 //=> '## Heading\n'
 
-mdast.use(behead, {depth: -2}).process('## Heading')
+mdast.use(behead, {weight: -2}).process('## Heading')
 //=> '#### Heading\n'
 
-mdast.use(behead, {depth: 2}).process('## Heading')
+mdast.use(behead, {weight: 2}).process('## Heading')
 //=> '# Heading\n'
 
-mdast.use(behead, {depth: -8}).process('## Heading')
+mdast.use(behead, {weight: -8}).process('## Heading')
 //=> '#### Heading\n'
 
-mdast.use(behead, {depth: -8, preserve: false}).process('## Heading')
+mdast.use(behead, {weight: -8, preserve: false}).process('## Heading')
 //=> ' Heading\n'
 ```
 
@@ -45,5 +45,6 @@ mdast.use(behead, {depth: -8, preserve: false}).process('## Heading')
 ### Options
 
 
-* **depth** [Number]
-* **preserve** [Boolean]
+* **weight** [Number] - Value to increase / decrease heading weight by.
+* **preserve** [Boolean] - Bool to let heading weight hit zero or not. (No
+* longer a heading)
