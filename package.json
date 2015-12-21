@@ -2,9 +2,11 @@
   "name": "mdast-behead",
   "version": "1.0.1",
   "description": "Add or remove heading levels",
-  "main": "index.js",
+  "main": "dst/lib/index.js",
   "scripts": {
-    "test": "node tst/index.js"
+    "build": "babel --source-maps --out-dir dst src",
+    "test": "node dst/tst/index.js",
+    "pretest": "npm run build"
   },
   "keywords": [
     "mdast",
@@ -19,6 +21,10 @@
     "unist-util-visit": "^1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
+    "babel-plugin-transform-es2015-block-scoping": "^6.3.13",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.16",
     "tap": "^2.3.3"
   }
 }
