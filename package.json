@@ -5,8 +5,10 @@
   "main": "dst/lib/index.js",
   "scripts": {
     "build": "babel --source-maps --out-dir dst src",
-    "test": "node dst/tst/index.js",
-    "pretest": "npm run build"
+    "test": "tap --cov -R spec dst/tst/index.js",
+    "pretest": "npm run build && npm run lint",
+    "lint": "eslint src/lib/index.js",
+    "clean": "rm -rf dst .nyc_output"
   },
   "keywords": [
     "mdast",
@@ -17,7 +19,6 @@
   "author": "mrzmmr",
   "license": "ISC",
   "dependencies": {
-    "mdast": "^2.3.0",
     "unist-util-visit": "^1.0.0"
   },
   "devDependencies": {
@@ -25,6 +26,8 @@
     "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
     "babel-plugin-transform-es2015-block-scoping": "^6.3.13",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.3.16",
+    "eslint": "^1.10.3",
+    "mdast": "^2.3.0",
     "tap": "^2.3.3"
   }
 }
