@@ -8,7 +8,7 @@ import {default as visit} from 'unist-util-visit'
  * Constants
  */
 
-const MINWEIGHT = 4
+const MINWEIGHT = 6
 const MAXWEIGHT = 1
 const OPTIONS = {
   weight: 0,
