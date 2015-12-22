@@ -47,6 +47,17 @@ mdast.use(behead, {weight: -8, preserve: false}).process('## Heading')
 ```
 
 
+#### Default options
+
+
+```js
+{
+  weight: 0,
+  preserve: true
+}
+```
+
+
 ### License
 
 [ISC](./License.md) [https://opensource.org/licenses/ISC](https://opensource.org/licenses/ISC)
