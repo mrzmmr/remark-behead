@@ -39,16 +39,14 @@ mdast.use(behead, {weight: -8, preserve: false}).process('## Heading')
 ## Options
 
 
-```json
+```js
 {
-  **weight**: [Number] // Value to increase decrease heading weight by.
-    
-  **preserve**: [Boolean] // Bool to let heading weight hit zero (no longer
-a heading) or not.
+  weight: [Number],   // Value to increase decrease heading weight by.
+  preserve: [Boolean] // Bool to let heading weight hit zero (no longer a heading) or not.
 }
 ```
 
 
 ### License
 
-[ISC](./License.md)[https://opensource.org/licenses/ISC](https://opensource.org/licenses/ISC)
+[ISC](./License.md) [https://opensource.org/licenses/ISC](https://opensource.org/licenses/ISC)
