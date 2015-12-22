@@ -1,13 +1,7 @@
 # mdast-behead
 
 
-===
-
-
-Behead is an mdast plugin to increase and decrease the weight of headings.
-Passing a negative value to the weight option will decrease the heading
-weight and passing a possative value to the weight option will increase the
-heading weight.
+Behead is an [mdast](https://github.com/wooorm/mdast) plugin to increase and decrease the weight of [markdown](https://daringfireball.net/projects/markdown/syntax#header) headings.  Passing a negative value to the weight option will decrease the heading weight and passing a possative value to the weight option will increase the heading weight.
 
 
 ## Install
@@ -42,9 +36,19 @@ mdast.use(behead, {weight: -8, preserve: false}).process('## Heading')
 ```
 
 
-### Options
+## Options
 
 
-* **weight** [Number] - Value to increase / decrease heading weight by.
-* **preserve** [Boolean] - Bool to let heading weight hit zero or not. (No
-* longer a heading)
+```json
+{
+  **weight**: [Number] // Value to increase decrease heading weight by.
+    
+  **preserve**: [Boolean] // Bool to let heading weight hit zero (no longer
+a heading) or not.
+}
+```
+
+
+### License
+
+[ISC](./License.md)[https://opensource.org/licenses/ISC](https://opensource.org/licenses/ISC)
