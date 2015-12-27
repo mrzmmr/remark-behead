@@ -1,14 +1,17 @@
-# mdast-behead
+# remark-behead
 
 
-Behead is an [mdast](https://github.com/wooorm/mdast) plugin to increase and decrease the weight of [markdown](https://daringfireball.net/projects/markdown/syntax#header) headings.  Passing a negative value to the weight option will decrease the heading weight and passing a possative value to the weight option will increase the heading weight.
+===
+
+
+Remark is a [remark](https://github.com/wooorm/remark) plugin to increase and decrease the weight of headings.  Passing a negative value to the weight option will decrease the heading weight and passing a possative value to the weight option will increase the heading weight.
 
 
 ## Install
 
 
 ```bash
-npm i --save mdast-behead
+npm i --save remark-behead
 ```
 
 
@@ -16,22 +19,22 @@ npm i --save mdast-behead
 
 
 ```js
-var mdast = require('mdast')
-var behead = require('mdast-behead')
+var remark = require('remark')
+var behead = require('remark-behead')
 
-mdast.use(behead).process('## Heading')
+remark.use(behead).process('## Heading')
 //=> '## Heading\n'
 
-mdast.use(behead, {weight: -2}).process('## Heading')
+remark.use(behead, {weight: -2}).process('## Heading')
 //=> '#### Heading\n'
 
-mdast.use(behead, {weight: 2}).process('## Heading')
+remark.use(behead, {weight: 2}).process('## Heading')
 //=> '# Heading\n'
 
-mdast.use(behead, {weight: -8}).process('## Heading')
+remark.use(behead, {weight: -8}).process('## Heading')
 //=> '#### Heading\n'
 
-mdast.use(behead, {weight: -8, preserve: false}).process('## Heading')
+remark.use(behead, {weight: -8, preserve: false}).process('## Heading')
 //=> ' Heading\n'
 ```
 
