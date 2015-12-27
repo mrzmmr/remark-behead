@@ -3,6 +3,7 @@
  */
 
 import {default as visit} from 'unist-util-visit'
+import {default as defop} from 'defop'
 
 /*
  * Constants
@@ -22,22 +23,11 @@ const OPTIONS = {
 module.exports = plugin
 
 /*
- * Options helper to deal with default options
- */
-
-export function handleOptions(options) {
-  return Object.keys(OPTIONS).reduce((prev, curr) => {
-    prev[curr] = curr in prev ? prev[curr] : OPTIONS[curr]
-    return prev
-  }, options)
-}
-
-/*
  * Main transformer plugin
  */
 
 export function plugin(processor, options=OPTIONS) {
-  options = handleOptions(options)
+  options = defop(options, OPTIONS)
 
   return (ast, file) => {
     return visit(ast, 'heading', (node) => {
@@ -47,10 +37,10 @@ export function plugin(processor, options=OPTIONS) {
        *
        * Example:
        *   mdast.use(behead, {before: '# end', weight: -2}).process(markdown)
-       */
 
       if (options.before && options.before !== '') {
         if (options.before
+      */
 
       /*
        * Reduce heading weight
