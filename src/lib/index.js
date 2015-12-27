@@ -25,7 +25,7 @@ module.exports = plugin
  * Options helper to deal with default options
  */
 
-export function handleOptions(options, callback) {
+export function handleOptions(options) {
   return Object.keys(OPTIONS).reduce((prev, curr) => {
     prev[curr] = curr in prev ? prev[curr] : OPTIONS[curr]
     return prev
@@ -43,12 +43,20 @@ export function plugin(processor, options=OPTIONS) {
     return visit(ast, 'heading', (node) => {
 
       /*
+       * Only affect heading weights before a key string
+       *
+       * Example:
+       *   mdast.use(behead, {before: '# end', weight: -2}).process(markdown)
+       */
+
+      if (options.before && options.before !== '') {
+        if (options.before
+
+      /*
        * Reduce heading weight
        *
        * Example:
-       *   mdast.use(behead, {weight: -2}).process('# Heading')
-       *
-       * Transforms to '### Heading'
+       *   mdast.use(behead, {weight: -2}).process(markdown)
        */
 
       if (options.weight < 0) {
