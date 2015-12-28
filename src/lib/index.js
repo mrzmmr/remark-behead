@@ -17,16 +17,10 @@ const OPTIONS = {
 }
 
 /*
- * Expose
- */
-
-module.exports = plugin
-
-/*
  * Main transformer plugin
  */
 
-export function plugin(processor, options=OPTIONS) {
+export default function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
   return (ast, file) => {
