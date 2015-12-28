@@ -27,16 +27,6 @@ export default function plugin(processor, options=OPTIONS) {
     return visit(ast, 'heading', (node) => {
 
       /*
-       * Only affect heading weights before a key string
-       *
-       * Example:
-       *   mdast.use(behead, {before: '# end', weight: -2}).process(markdown)
-
-      if (options.before && options.before !== '') {
-        if (options.before
-      */
-
-      /*
        * Reduce heading weight
        *
        * Example:
