@@ -1,15 +1,15 @@
 import * as fs from 'fs'
 import * as tap from 'tap'
-import * as mdast from 'mdast'
+import * as remark from 'remark'
 import {default as behead} from '../lib/index'
 
 const MAXWEIGHT = '#'
 const MINWEIGHT = '######'
 
-tap.test('Mdast plugin to add or remove heading weight', (plugin) => {
+tap.test('Remark plugin to add or remove heading weight', (plugin) => {
   plugin.test('Add 1 heading level', (assert) => {
     let expected = '## Heading\n'
-    let actual = mdast
+    let actual = remark
       .use(behead, {weight: 1})
       .process('### Heading')
 
@@ -19,7 +19,7 @@ tap.test('Mdast plugin to add or remove heading weight', (plugin) => {
 
   plugin.test('Add max heading weight', (assert) => {
     let expected = MAXWEIGHT + ' Heading\n'
-    let actual = mdast
+    let actual = remark
       .use(behead, {weight: 5})
       .process('## Heading')
 
@@ -29,7 +29,7 @@ tap.test('Mdast plugin to add or remove heading weight', (plugin) => {
 
   plugin.test('Remove 1 heading weight', (assert) => {
     let expected = '### Heading\n'
-    let actual = mdast
+    let actual = remark
       .use(behead, {weight: -1})
       .process('## Heading')
 
@@ -38,18 +38,19 @@ tap.test('Mdast plugin to add or remove heading weight', (plugin) => {
   })
 
   plugin.test('Remove max heading weight', (assert) => {
-    let expected = MINWEIGHT + ' Heading\n'
-    let actual = mdast
+    let expected = '###### Heading\n'
+    let actual = remark
       .use(behead, {weight: -10})
       .process('## Heading')
 
+    assert.comment(actual)
     assert.equal(actual, expected)
     assert.end()
   })
 
   plugin.test('Remove max heading w/o preserve', (assert) => {
     let expected = ' Heading\n'
-    let actual = mdast
+    let actual = remark
       .use(behead, {weight: -10, preserve: false})
       .process('## Heading')
 

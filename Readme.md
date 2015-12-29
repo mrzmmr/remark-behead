@@ -42,6 +42,7 @@ remark.use(behead, {weight: -8, preserve: false}).process('## Heading')
 ## Options
 
 
+<<<<<<< HEAD
 ```js
 {
   weight: [Number],   // Value to increase decrease heading weight by.
@@ -64,3 +65,6 @@ remark.use(behead, {weight: -8, preserve: false}).process('## Heading')
 ### License
 
 [ISC](./License.md) [https://opensource.org/licenses/ISC](https://opensource.org/licenses/ISC)
+
+* **weight** [Number] - Value to increase / decrease heading weight by.
+* **preserve** [Boolean] - Bool to let heading weight hit zero or not. (No longer a heading)
