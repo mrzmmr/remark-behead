@@ -44,8 +44,8 @@ remark.use(behead, {weight: -8, preserve: false}).process('## Heading')
 
 ```js
 {
-  weight: [Number] || 0,   // Value to increase decrease heading weight by.
-  preserve: [Boolean] || true // Bool to let heading weight hit zero (no longer a heading) or not.
+  {Number} [weight=0] // Value to increase decrease heading weight by.
+  {Boolean} [preserve=true] // Bool to let heading weight hit zero (no longer a heading) or not.
 }
 ```
 
