@@ -17,8 +17,8 @@ const MAXWEIGHT = 1
  */
 
 const OPTIONS = {
-  weight: 0,
-  preserve: true
+  preserve: true,
+  weight: 0
 }
 
 /*
@@ -30,6 +30,7 @@ export default function plugin(processor, options=OPTIONS) {
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
+//      if (options.after && afterSwitch) {
       if (node.type && node.type === 'heading') {
 
         /*
@@ -55,7 +56,7 @@ export default function plugin(processor, options=OPTIONS) {
              * Transforms to ' Heading\n'
              */
 
-            if (options.preserve === true) {
+            if (options.preserve) {
               node.depth = MINWEIGHT
             }
             else {
