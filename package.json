@@ -1,6 +1,6 @@
 {
-  "name": "mdast-behead",
-  "version": "1.0.3",
+  "name": "remark-behead",
+  "version": "1.2.5",
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
@@ -15,14 +15,13 @@
     "remark",
     "behead",
     "plugin",
-    "heading",
-    "mdast-plugin"
+    "mdast-plugin",
+    "remark-plugin"
   ],
   "author": "mrzmmr",
   "license": "ISC",
   "dependencies": {
-    "defop": "^1.1.3",
-    "unist-util-visit": "^1.0.0"
+    "defop": "^1.1.4"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
@@ -32,7 +31,7 @@
     "babel-plugin-transform-es2015-parameters": "^6.3.25",
     "defop": "^1.1.4",
     "eslint": "^1.10.3",
-    "mdast": "^2.3.0",
+    "remark": "^3.0.1",
     "tap": "^2.3.3"
   }
 }
