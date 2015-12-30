@@ -1,6 +1,6 @@
 {
   "name": "remark-behead",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
