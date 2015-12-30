@@ -43,8 +43,10 @@ remark.use(behead, {weight: -8, preserve: false}).process('## Heading')
 
 
 ```js
-{Number} [weight=0]
-{Boolean} [preserve=true]
+{
+  preserve: [Boolean], // Default = true
+  weight: [Number]     // Default = 0
+}
 ```
 
 
