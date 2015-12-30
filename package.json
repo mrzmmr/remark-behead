@@ -5,7 +5,7 @@
   "main": "dst/lib/index.js",
   "scripts": {
     "build": "babel --source-maps --out-dir dst src",
-    "test": "tap --cov -R spec dst/tst/index.js",
+    "test": "node dst/tst/index.js",
     "pretest": "npm run build && npm run lint",
     "lint": "eslint src/lib/index.js",
     "clean": "rm -rf dst .nyc_output"
@@ -21,7 +21,8 @@
   "author": "mrzmmr",
   "license": "ISC",
   "dependencies": {
-    "defop": "^1.1.4"
+    "defop": "^1.1.4",
+    "lodash.isequal": "^3.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",

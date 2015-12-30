@@ -56,3 +56,13 @@ tap.test('Remove max heading w/o preserve', (assert) => {
   assert.equal(actual, expected)
   assert.end()
 })
+
+tap.test('Add 1 heading level', (assert) => {
+  let expected = '# Heading\n## Heading\n'
+  let actual = remark
+    .use(behead, {weight: 1, after: '# Heading\n'})
+    .process('# Heading\n# Heading')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
