@@ -2,7 +2,7 @@
  * Imports
  */
 
-import {default as visit} from 'unist-util-visit'
+import {default as remark} from 'remark'
 import {default as defop} from 'defop'
 
 /*
@@ -18,6 +18,7 @@ const MAXWEIGHT = 1
 
 const OPTIONS = {
   preserve: true,
+  after: '',
   weight: 0
 }
 
@@ -27,12 +28,28 @@ const OPTIONS = {
 
 export default function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
+  let aswitch = false
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
+
+      if (remark.stringify(node) === options.after) {
+        aswitch = true
+      }
+
+      if (options.after.length === 0) {
       return behead(node, options, (error, node) => {
         return node
       })
+      }
+      else {
+        if (aswitch) {
+          return behead(node, options, (error, node) => {
+            return node
+          })
+        }
+        return node
+      }
     })
   }
 }

@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as tap from 'tap'
-import * as remark from 'remark'
+import {default as remark} from 'remark'
 import {default as behead} from '../lib/index'
 
 const MAXWEIGHT = '#'
@@ -56,3 +56,14 @@ tap.test('Remove max heading w/o preserve', (assert) => {
   assert.equal(actual, expected)
   assert.end()
 })
+
+tap.test('Add 1 heading level', (assert) => {
+  let expected = '## Heading\n## Heading\n'
+  let actual = remark
+    .use(behead, {weight: -1, after: '## Heading'})
+    .process('## Heading\n# Heading')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
+
