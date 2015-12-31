@@ -2,7 +2,6 @@
  * Imports
  */
 
-import {default as deepEqual} from 'deep-equal'
 import {default as remark} from 'remark'
 import {default as defop} from 'defop'
 
@@ -19,6 +18,7 @@ const MAXWEIGHT = 1
 
 const OPTIONS = {
   preserve: true,
+  after: '',
   weight: 0
 }
 
@@ -30,36 +30,33 @@ export default function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
   let aswitch = false
-  let temp2
-  let temp
-
-  if (options.after) {
-    temp = remark.parse(options.after)
-  }
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
-      if (options.after) {
-        temp2 = temp
-        temp2.children = [node]
 
-        if (deepEqual(temp, temp2)) {
-          aswitch = true
-        }
+      if (remark.stringify(node) === options.after) {
+        aswitch = true
       }
 
-      if (aswitch || !options.after) {
+      if (options.after.length === 0) {
         return behead(node, options, (error, node) => {
           return node
         })
       }
-      return node
+      else {
+        if (aswitch) {
+          return behead(node, options, (error, node) => {
+            return node
+          })
+        }
+        return node
+      }
     })
   }
 }
 
 export function behead(node, options, callback) {
-  if (node.type === 'heading') {
+  if (node.type && node.type === 'heading') {
 
     /*
      * Reduce heading weight
@@ -112,3 +109,4 @@ export function behead(node, options, callback) {
   }
   return callback(null, node)
 }
+
