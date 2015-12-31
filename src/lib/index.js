@@ -2,8 +2,7 @@
  * Imports
  */
 
-import {default as isEqual} from 'lodash.isequal'
-import {default as remark} from 'remark'
+import {default as visit} from 'unist-util-visit'
 import {default as defop} from 'defop'
 
 /*
@@ -29,29 +28,17 @@ const OPTIONS = {
 export default function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
-  let aswitch = false
-
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
-
-      // TODO: Figure out a way to compare equivilance. The value key is
-      // not going to be equivilant because unist strips the markdown
-      // part. So ... # Heading turns into Heading.
-      if (node.children[0].value === options.after) {
-        aswitch = true
-      }
-      if (aswitch || !options.after) {
-        return behead(node, options, (error, node) => {
-          return node
-        })
-      }
-      return node
+      return behead(node, options, (error, node) => {
+        return node
+      })
     })
   }
 }
 
 export function behead(node, options, callback) {
-  if (node.type === 'heading') {
+  if (node.type && node.type === 'heading') {
 
     /*
      * Reduce heading weight
@@ -104,3 +91,4 @@ export function behead(node, options, callback) {
   }
   return callback(null, node)
 }
+
