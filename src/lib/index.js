@@ -2,7 +2,6 @@
  * Imports
  */
 
-import {default as visit} from 'unist-util-visit'
 import {default as defop} from 'defop'
 
 /*
