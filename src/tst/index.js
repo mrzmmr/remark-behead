@@ -6,11 +6,21 @@ import {default as behead} from '../lib/index'
 const MAXWEIGHT = '#'
 const MINWEIGHT = '######'
 
-tap.test('Add 1 heading level', (assert) => {
-  let expected = '## Heading\n'
+tap.test('Add 1 heading weight', (assert) => {
+  let expected = '# Heading\n'
   let actual = remark
     .use(behead, {weight: 1})
-    .process('### Heading')
+    .process('## Heading')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
+
+tap.test('Remove 1 heading weight', (assert) => {
+  let expected = '## Heading\n'
+  let actual = remark
+    .use(behead, {weight: -1})
+    .process('# Heading')
 
   assert.equal(actual, expected)
   assert.end()
@@ -19,17 +29,7 @@ tap.test('Add 1 heading level', (assert) => {
 tap.test('Add max heading weight', (assert) => {
   let expected = MAXWEIGHT + ' Heading\n'
   let actual = remark
-    .use(behead, {weight: 5})
-    .process('## Heading')
-
-  assert.equal(actual, expected)
-  assert.end()
-})
-
-tap.test('Remove 1 heading weight', (assert) => {
-  let expected = '### Heading\n'
-  let actual = remark
-    .use(behead, {weight: -1})
+    .use(behead, {weight: 10})
     .process('## Heading')
 
   assert.equal(actual, expected)
@@ -37,7 +37,7 @@ tap.test('Remove 1 heading weight', (assert) => {
 })
 
 tap.test('Remove max heading weight', (assert) => {
-  let expected = '###### Heading\n'
+  let expected = MINWEIGHT + ' Heading\n'
   let actual = remark
     .use(behead, {weight: -10})
     .process('## Heading')
@@ -57,7 +57,7 @@ tap.test('Remove max heading w/o preserve', (assert) => {
   assert.end()
 })
 
-tap.test('Add 1 heading level', (assert) => {
+tap.test('Add 1 heading weight after', (assert) => {
   let expected = '## Heading\n\n## Heading\n'
   let actual = remark
     .use(behead, {weight: -1, after: '## Heading'})
@@ -67,8 +67,8 @@ tap.test('Add 1 heading level', (assert) => {
   assert.end()
 })
 
-tap.test('Remove 1 heading level', (assert) => {
-  let epxected = '## Heading\n\n# Heading\n'
+tap.test('Remove 1 heading weight after', (assert) => {
+  let expected = '## Heading\n\n# Heading\n'
   let actual = remark
     .use(behead, {weight: 1, after: '## Heading'})
     .process('## Heading\n## Heading')
@@ -77,7 +77,7 @@ tap.test('Remove 1 heading level', (assert) => {
   assert.end()
 })
 
-tap.test('Add max heading level', (assert) => {
+tap.test('Add max heading weight after', (assert) => {
   let expected = '## Heading\n\n' + MAXWEIGHT + ' Heading\n'
   let actual = remark
     .use(behead, {weight: 10, after: '## Heading'})
@@ -87,7 +87,7 @@ tap.test('Add max heading level', (assert) => {
   assert.end()
 })
 
-tap.test('Remove max heading level', (assert) => {
+tap.test('Remove max heading weight after', (assert) => {
   let expected = '## Heading\n\n' + MINWEIGHT + ' Heading\n'
   let actual = remark
     .use(behead, {weight: -10, after: '## Heading'})
