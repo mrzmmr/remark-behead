@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as tap from 'tap'
-import * as remark from 'remark'
+import {default as remark} from 'remark'
 import {default as behead} from '../lib/index'
 
 const MAXWEIGHT = '#'

@@ -28,6 +28,7 @@ const OPTIONS = {
 
 export default function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
+  let aswitch = false
 
   let aswitch = false
 
