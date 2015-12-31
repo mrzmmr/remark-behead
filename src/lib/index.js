@@ -2,7 +2,7 @@
  * Imports
  */
 
-import {default as isEqual} from 'lodash.isequal'
+import {default as deepEqual} from 'deep-equal'
 import {default as remark} from 'remark'
 import {default as defop} from 'defop'
 
@@ -30,16 +30,24 @@ export default function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
   let aswitch = false
+  let temp2
+  let temp
+
+  if (options.after) {
+    temp = remark.parse(options.after)
+  }
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
+      if (options.after) {
+        temp2 = temp
+        temp2.children = [node]
 
-      // TODO: Figure out a way to compare equivilance. The value key is
-      // not going to be equivilant because unist strips the markdown
-      // part. So ... # Heading turns into Heading.
-      if (node.children[0].value === options.after) {
-        aswitch = true
+        if (deepEqual(temp, temp2)) {
+          aswitch = true
+        }
       }
+
       if (aswitch || !options.after) {
         return behead(node, options, (error, node) => {
           return node
