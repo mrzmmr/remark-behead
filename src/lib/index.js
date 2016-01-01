@@ -25,28 +25,21 @@ const OPTIONS = {
 export default function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
-  let aswitch = false
+  let afterSwitch = false
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
 
-      if (options.after.length === 0) {
+      if (options.after.length === 0 || afterSwitch) {
         return behead(node, options, (error, node) => {
           return node
         })
       }
-      else {
-
-        if (aswitch) {
-          return behead(node, options, (error, node) => {
-            return node
-          })
-        }
-        else if (remark.stringify(node) === options.after) {
-          aswitch = true
-        }
-        return node
+      if (remark.stringify(node) === options.after) {
+        afterSwitch = true
       }
+
+      return node
     })
   }
 }
