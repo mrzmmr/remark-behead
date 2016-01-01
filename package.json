@@ -4,7 +4,7 @@
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
-    "docs": "documentation readme src/lib/index.js -s '...'",
+    "docs": "documentation readme src/lib/index.js -s 'remark-behead'",
     "build": "babel --source-maps --out-dir dst src",
     "test": "tap --cov -R spec dst/tst/index.js",
     "pretest": "npm run build && npm run lint",
