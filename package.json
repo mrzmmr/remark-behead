@@ -24,7 +24,7 @@
   "author": "mrzmmr",
   "license": "ISC",
   "dependencies": {
-    "defop": "^1.1.4",
+    "defop": "^1.1.4"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
