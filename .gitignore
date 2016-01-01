@@ -2,7 +2,7 @@
 logs
 *.log
 npm-debug.log*
-.DS_Strore
+.DS_Store
 
 # Runtime data
 pids
