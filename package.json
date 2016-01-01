@@ -4,11 +4,14 @@
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
+    "docs": "documentation readme src/lib/index.js -s '...'",
     "build": "babel --source-maps --out-dir dst src",
     "test": "tap --cov -R spec dst/tst/index.js",
     "pretest": "npm run build && npm run lint",
     "lint": "eslint src/lib/index.js",
-    "clean": "rm -rf dst .nyc_output"
+    "clean": "rm -rf dst .nyc_output",
+    "postdocs": "mv babelrc .babelrc",
+    "predocs": "mv .babelrc babelrc"
   },
   "keywords": [
     "mdast",
@@ -22,7 +25,6 @@
   "license": "ISC",
   "dependencies": {
     "defop": "^1.1.4",
-    "lodash.isequal": "^3.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
