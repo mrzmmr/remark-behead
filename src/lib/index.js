@@ -22,7 +22,7 @@ const OPTIONS = {
   weight: 0
 }
 
-export default function plugin(processor, options=OPTIONS) {
+module.exports = function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
   let afterSwitch = false
