@@ -53,6 +53,9 @@ module.exports = function plugin(processor, options=OPTIONS) {
           return node
         })
       }
+      if (remark.stringify(node) === options.before) {
+        beforeSwitch = true
+      }
       if (remark.stringify(node) === options.after) {
         afterSwitch = true
       }
