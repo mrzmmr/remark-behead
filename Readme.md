@@ -1,10 +1,9 @@
 # remark-behead
 
-===
 
 Behead is a [remark](https://github.com/wooorm/remark) plugin to increase and decrease the weight of headings.  Passing a negative value to the weight option will decrease the heading weight and passing a possative value to the weight option will increase the heading weight.
 
-## 
+##
 
 ###### install
 
@@ -12,7 +11,7 @@ Behead is a [remark](https://github.com/wooorm/remark) plugin to increase and de
 npm i --save remark-behead
 ```
 
-## 
+##
 
 ###### example
 
@@ -36,7 +35,7 @@ remark.use(behead, {weight: -10, preserve: false}).process('### Heading')
 //=> ' Heading\n'
 ```
 
-## 
+##
 
 ###### default options
 
