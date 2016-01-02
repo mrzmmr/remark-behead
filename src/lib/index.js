@@ -18,6 +18,7 @@ const MAXWEIGHT = 1
 
 const OPTIONS = {
   preserve: true,
+  before: '',
   after: '',
   weight: 0
 }
@@ -25,12 +26,29 @@ const OPTIONS = {
 module.exports = function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
+  let beforeSwitch = false
   let afterSwitch = false
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
 
-      if (options.after.length === 0 || afterSwitch) {
+      if (remark.stringify(node) === options.before) {
+        beforeSwitch = true
+      }
+
+      if (options.after.length !== 0 && afterSwitch) {
+        return behead(node, options, (error, node) => {
+          return node
+        })
+      }
+
+      if (options.before.length !== 0 && beforeSwitch === true) {
+        return behead(node, options, (error, node) => {
+          return node
+        })
+      }
+
+      if (options.after.length === 0 || options.before.length === 0) {
         return behead(node, options, (error, node) => {
           return node
         })
