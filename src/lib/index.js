@@ -18,8 +18,8 @@ const MAXWEIGHT = 1
 
 const OPTIONS = {
   preserve: true,
-  before: '',
-  after: '',
+  before: null,
+  after: null,
   weight: 0
 }
 
@@ -31,21 +31,37 @@ module.exports = function plugin(processor, options=OPTIONS) {
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
-      if (remark.stringify(node) === options.before) {
-        beforeSwitch = true
-        return node
-      }
 
-      else if ((afterSwitch || options.after.length === 0) ||
-        (!beforeSwitch && options.before.length !== 0)) {
+      if (!options.before && !options.after) {
         return behead(node, options, (error, node) => {
           return node
         })
       }
-      else if (remark.stringify(node) === options.after) {
-        afterSwitch = true
-        return node
+
+      else if (options.after) {
+        if (remark.stringify(node) === options.after) {
+          afterSwitch = true
+          return node
+        }
+        else if (afterSwitch) {
+          return behead(node, options, (error, node) => {
+            return node
+          })
+        }
       }
+
+      else if (options.before) {
+        if (remark.stringify(node) === options.before) {
+          beforeSwitch = true
+          return node
+        }
+        else if (!beforeSwitch) {
+          return behead(node, options, (error, node) => {
+            return node
+          })
+        }
+      }
+
       else {
         return node
       }

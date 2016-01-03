@@ -5,7 +5,7 @@
   "main": "dst/lib/index.js",
   "scripts": {
     "build": "babel --source-maps --out-dir dst src",
-    "test": "node dst/tst/index.js",
+    "test": "node dst/tst/index.js | tap-spec",
     "pretest": "npm run build && npm run lint",
     "lint": "eslint src/lib/index.js",
     "clean": "rm -rf dst .nyc_output"
