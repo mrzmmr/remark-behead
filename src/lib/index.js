@@ -31,36 +31,24 @@ module.exports = function plugin(processor, options=OPTIONS) {
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
-
       if (remark.stringify(node) === options.before) {
         beforeSwitch = true
+        return node
       }
 
-      if (options.after.length !== 0 && afterSwitch) {
+      else if ((afterSwitch || options.after.length === 0) ||
+        (!beforeSwitch && options.before.length !== 0)) {
         return behead(node, options, (error, node) => {
           return node
         })
       }
-
-      if (options.before.length !== 0 && beforeSwitch === true) {
-        return behead(node, options, (error, node) => {
-          return node
-        })
-      }
-
-      if (options.after.length === 0 || options.before.length === 0) {
-        return behead(node, options, (error, node) => {
-          return node
-        })
-      }
-      if (remark.stringify(node) === options.before) {
-        beforeSwitch = true
-      }
-      if (remark.stringify(node) === options.after) {
+      else if (remark.stringify(node) === options.after) {
         afterSwitch = true
+        return node
       }
-
-      return node
+      else {
+        return node
+      }
     })
   }
 }
