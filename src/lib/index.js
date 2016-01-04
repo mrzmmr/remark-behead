@@ -38,7 +38,7 @@ module.exports = function plugin(processor, options=OPTIONS) {
         })
       }
 
-      else if (options.after) {
+      if (options.after) {
         if (afterSwitch) {
           return behead(node, options, (error, node) => {
             return node
