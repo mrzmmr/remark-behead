@@ -39,32 +39,36 @@ module.exports = function plugin(processor, options=OPTIONS) {
       }
 
       else if (options.after) {
-        if (remark.stringify(node) === options.after) {
-          afterSwitch = true
-          return node
-        }
-        else if (afterSwitch) {
+        if (afterSwitch) {
           return behead(node, options, (error, node) => {
             return node
           })
         }
-      }
-
-      else if (options.before) {
-        if (remark.stringify(node) === options.before) {
-          beforeSwitch = true
+        else {
+          if (remark.stringify(node) === options.after) {
+            afterSwitch = true
+          }
           return node
         }
-        else if (!beforeSwitch) {
-          return behead(node, options, (error, node) => {
+      }
+
+      if (options.before) {
+        if (beforeSwitch === true) {
+          return node
+        }
+        else {
+          if (remark.stringify(node) === options.before) {
+            beforeSwitch = true
             return node
-          })
+          }
+          else {
+            return behead(node, options, (error, node) => {
+              return node
+            })
+          }
         }
       }
 
-      else {
-        return node
-      }
     })
   }
 }
