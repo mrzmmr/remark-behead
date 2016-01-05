@@ -1,6 +1,6 @@
 # remark-behead
 
-#### behead
+## behead
 
 Behead is a [remark](https://github.com/wooorm/remark) plugin to 
 increase and decrease the weight of markdown headings. Passing a 
@@ -8,20 +8,17 @@ negative value to the weight option will decrease the heading weight.
 Passing a positive value to the weight option will increase the heading 
 weight.
 
-#### install
+### install
 
-```bash
-npm install --save remark-behead
-```
+    npm install --save remark-behead
 
 **Meta**
 
 -   **version**: 1.4.9
 -   **author**: mrzmmr
--   **license**: [ISC](https://opensource.org/licenses/ISC)
     </br></br>
 
-#### options
+## options
 
 **Properties**
 
@@ -75,3 +72,7 @@ remark(behead, {weight: 1, between: ['# Hello', '# World']})
 
   => '# Hello\n## Between\n# World\n'
 ```
+
+# license
+
+[ISC]('./license.md') <https://opensource.org/licenses/ISC>

@@ -18,7 +18,7 @@
     "plugins": {
       "./dst/lib/index.js": {
         "weight": -2,
-        "after": "# remark-behead"
+        "between": ["**Properties**", "# license"]
       }
     }
   },

@@ -5,16 +5,15 @@
  * Passing a positive value to the weight option will increase the heading 
  * weight.
  *
- * # install
+ * ## install
  *
- * ```bash
+ * ```
  * npm install --save remark-behead
  * ```
  *
  * @module behead
  * @version 1.4.9
  * @author mrzmmr
- * @license [ISC](https://opensource.org/licenses/ISC)
  * </br></br>
  */
 
