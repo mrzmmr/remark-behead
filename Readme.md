@@ -31,7 +31,7 @@ npm install --save remark-behead
 
 ###### options.after
 
-Manipulates nodes after but not including the given string.
+Manipulates heading nodes after but not including the given string.
 **Note:** When using this option, behead will start working after 
 the first occurrence of the given string.
 
@@ -46,9 +46,9 @@ remark.use(behead, {weight: 1, after: '# After this'})
 
 ###### options.before
 
-Manipulates nodes before but not including the given string.
-**Note:** When using this option, behead will stop working at 
-the first occurrence of the given string.
+Manipulates heading nodes before but not including the given 
+string. **Note:** When using this option, behead will stop working 
+at the first occurrence of the given string.
 
 **Examples**
 
@@ -61,8 +61,8 @@ remark.use(behead, {weight: 1, before: '# Before this'})
 
 ###### options.between
 
-Manipulates nodes between but not including the two given strings,
-starting with options.between[0] and ending with
+Manipulates hading nodes between but not including the two given 
+strings, starting with options.between[0] and ending with
 options.between[1].
 
 **Examples**

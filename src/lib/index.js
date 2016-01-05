@@ -58,7 +58,7 @@ module.exports = function plugin(processor, opts=options) {
       }
 
       /**
-       * Manipulates nodes after but not including the given string.
+       * Manipulates heading nodes after but not including the given string.
        * **Note:** When using this option, behead will start working after 
        * the first occurrence of the given string.
        *
@@ -83,9 +83,9 @@ module.exports = function plugin(processor, opts=options) {
       }
 
       /**
-       * Manipulates nodes before but not including the given string.
-       * **Note:** When using this option, behead will stop working at 
-       * the first occurrence of the given string.
+       * Manipulates heading nodes before but not including the given 
+       * string. **Note:** When using this option, behead will stop working 
+       * at the first occurrence of the given string.
        *
        * @name options.before
        * @example
@@ -111,8 +111,8 @@ module.exports = function plugin(processor, opts=options) {
       }
 
       /**
-       * Manipulates nodes between but not including the two given strings,
-       * starting with options.between[0] and ending with
+       * Manipulates hading nodes between but not including the two given 
+       * strings, starting with options.between[0] and ending with
        * options.between[1].
        *
        * @name options.between
