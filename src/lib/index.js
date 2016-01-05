@@ -18,6 +18,7 @@ const MAXWEIGHT = 1
 
 const OPTIONS = {
   preserve: true,
+  between: null,
   before: null,
   after: null,
   weight: 0
@@ -26,54 +27,66 @@ const OPTIONS = {
 module.exports = function plugin(processor, options=OPTIONS) {
   options = defop(options, OPTIONS)
 
-  let beforeSwitch = false
-  let afterSwitch = false
+  let switched = false
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
 
-      if (!options.before && !options.after) {
-        return behead(node, options, (error, node) => {
-          return node
-        })
+      if (!options.between && !options.before && !options.after) {
+        return behead(node, options)
       }
 
       if (options.after) {
-        if (afterSwitch) {
-          return behead(node, options, (error, node) => {
-            return node
-          })
+        if (switched) {
+          return behead(node, options)
         }
         else {
           if (remark.stringify(node) === options.after) {
-            afterSwitch = true
+            switched = true
           }
           return node
         }
       }
 
       if (options.before) {
-        if (beforeSwitch === true) {
+        if (switched) {
           return node
         }
         else {
           if (remark.stringify(node) === options.before) {
-            beforeSwitch = true
+            switched = true
             return node
           }
           else {
-            return behead(node, options, (error, node) => {
-              return node
-            })
+            return behead(node, options)
           }
         }
+      }
+
+      if (options.between) {
+        if (switched) {
+
+          if (remark.stringify(node) === options.between[1]) {
+            switched = false
+            return node
+          }
+
+          return behead(node, options)
+        }
+
+        if (remark.stringify(node) === options.between[0]) {
+          switched = true
+          return node
+        }
+
+        return node
       }
 
     })
   }
 }
 
-export function behead(node, options, callback) {
+export function behead(node, options) {
 
   if (node.type && node.type === 'heading') {
 
@@ -98,5 +111,5 @@ export function behead(node, options, callback) {
       }
     }
   }
-  return callback(null, node)
+  return node
 }

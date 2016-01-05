@@ -156,3 +156,53 @@ tap.test('Remove max heading weight w/o preserve before', (assert) => {
   assert.equal(actual, expected)
   assert.end()
 })
+
+tap.test('Add heading weight between', (assert) => {
+  let expected = '## Heading 1\n\n### Heading 2\n\n## Heading 3\n'
+  let actual = remark
+    .use(behead, {weight: -1, between: ['## Heading 1', '## Heading 3']})
+    .process('## Heading 1\n## Heading 2\n## Heading 3')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
+
+tap.test('Remove heading weight between', (assert) => {
+  let expected = '## Heading 1\n\n# Heading 2\n\n## Heading 3\n'
+  let actual = remark
+    .use(behead, {weight: 1, between: ['## Heading 1', '## Heading 3']})
+    .process('## Heading 1\n## Heading 2\n## Heading 3')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
+
+tap.test('Add max heading weight between', (assert) => {
+  let expected = '## Heading 1\n\n' + MAXWEIGHT + ' Heading 2\n\n## Heading 3\n'
+  let actual = remark
+    .use(behead, {weight: 10, between: ['## Heading 1', '## Heading 3']})
+    .process('## Heading 1\n## Heading 2\n## Heading 3')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
+
+tap.test('Remove max heading weight between', (assert) => {
+  let expected = '## Heading 1\n\n' + MINWEIGHT + ' Heading 2\n\n## Heading 3\n'
+  let actual = remark
+    .use(behead, {weight: -10, between: ['## Heading 1', '## Heading 3']})
+    .process('## Heading 1\n## Heading 2\n## Heading 3')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
+
+tap.test('Remove max heading weight w/o preserve between', (assert) => {
+  let expected = '## Heading 1\n\n Heading 2\n\n## Heading 3\n'
+  let actual = remark
+    .use(behead, {weight: -10, between: ['## Heading 1', '## Heading 3'], preserve: false})
+    .process('## Heading 1\n## Heading 2\n## Heading 3')
+
+  assert.equal(actual, expected)
+  assert.end()
+})
