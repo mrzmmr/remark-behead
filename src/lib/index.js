@@ -37,6 +37,7 @@ const MAXWEIGHT = 1
  * @property {String} before    - Defaults to null
  * @property {String} after     - Defaults to null
  * @property {Number} weight    - Defaults to 0
+ * </br></br>
  */
 let options = {
   preserve: true,
@@ -59,13 +60,13 @@ module.exports = function plugin(processor, opts=options) {
       }
 
       /**
-       * Manipulates heading nodes after but not including the given string.
-       * **Note:** When using this option, behead will start working after 
-       * the first occurrence of the given string.
+       * Manipulates heading nodes after but not including the given 
+       * string. _**Note:** When using this option, behead will start 
+       * working after the first occurrence of the given string._
        *
        * @name options.after
-       * @example
        *
+       * @example
        * remark.use(behead, {weight: 1, after: '# After this'})
        *   .process('# After this\n## Hello\n## World')
        *
@@ -85,12 +86,12 @@ module.exports = function plugin(processor, opts=options) {
 
       /**
        * Manipulates heading nodes before but not including the given 
-       * string. **Note:** When using this option, behead will stop working 
-       * at the first occurrence of the given string.
+       * string. _**Note:** When using this option, behead will stop 
+       * working at the first occurrence of the given string._
        *
        * @name options.before
-       * @example
        *
+       * @example
        * remark.use(behead, {weight: 1, before: '# Before this'})
        *   .process('# Hello\n# World\n# Before this')
        *
@@ -117,8 +118,8 @@ module.exports = function plugin(processor, opts=options) {
        * options.between[1].
        *
        * @name options.between
-       * @example
        *
+       * @example
        * remark(behead, {weight: 1, between: ['# Hello', '# World']})
        *   .process('# Hello\n# Between\n# World')
        *

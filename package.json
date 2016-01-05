@@ -17,7 +17,7 @@
     "output": "./Readme.md",
     "plugins": {
       "./dst/lib/index.js": {
-        "weight": -10,
+        "weight": -2,
         "after": "# remark-behead"
       }
     }
