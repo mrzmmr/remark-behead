@@ -1,3 +1,22 @@
+/**
+ * Behead is a [remark](https://github.com/wooorm/remark) plugin to 
+ * increase and decrease the weight of markdown headings. Passing a 
+ * negative value to the weight option will decrease the heading weight.
+ * Passing a positive value to the weight option will increase the heading 
+ * weight.
+ *
+ * # install
+ *
+ * ```bash
+ * npm install --save remark-behead
+ * ```
+ *
+ * @module behead
+ * @version 1.4.9
+ * @author mrzmmr
+ * @license [ISC](https://opensource.org/licenses/ISC)
+ */
+
 /*
  * Imports
  */
@@ -12,11 +31,13 @@ import {default as defop} from 'defop'
 const MINWEIGHT = 6
 const MAXWEIGHT = 1
 
-/*
- * Option defaults
+/**
+ * @property {Boolean} preserve - Defaults to true
+ * @property {String} before    - Defaults to null
+ * @property {String} after     - Defaults to null
+ * @property {Number} weight    - Defaults to 0
  */
-
-const OPTIONS = {
+let options = {
   preserve: true,
   between: null,
   before: null,
@@ -24,78 +45,116 @@ const OPTIONS = {
   weight: 0
 }
 
-module.exports = function plugin(processor, options=OPTIONS) {
-  options = defop(options, OPTIONS)
+module.exports = function plugin(processor, opts=options) {
+  opts = defop(opts, options)
 
   let switched = false
 
   return (ast, file) => {
     return ast.children = ast.children.map((node) => {
 
-      if (!options.between && !options.before && !options.after) {
-        return behead(node, options)
+      if (!opts.between && !opts.before && !opts.after) {
+        return behead(node, opts)
       }
 
-      if (options.after) {
+      /**
+       * Manipulates nodes after but not including the given string.
+       * **Note:** When using this option, behead will start working after 
+       * the first occurrence of the given string.
+       *
+       * @name options.after
+       * @example
+       *
+       * remark.use(behead, {weight: 1, after: '# After this'})
+       *   .process('# After this\n## Hello\n## World')
+       *
+       *   => '# After this\n# Hello\n# World\n'
+       */
+      if (opts.after) {
         if (switched) {
-          return behead(node, options)
+          return behead(node, opts)
         }
         else {
-          if (remark.stringify(node) === options.after) {
+          if (remark.stringify(node) === opts.after) {
             switched = true
           }
           return node
         }
       }
 
-      if (options.before) {
+      /**
+       * Manipulates nodes before but not including the given string.
+       * **Note:** When using this option, behead will stop working at 
+       * the first occurrence of the given string.
+       *
+       * @name options.before
+       * @example
+       *
+       * remark.use(behead, {weight: 1, before: '# Before this'})
+       *   .process('# Hello\n# World\n# Before this')
+       *
+       *   => '## Hello\n## World\n# Before this\n'
+       */
+      if (opts.before) {
         if (switched) {
           return node
         }
         else {
-          if (remark.stringify(node) === options.before) {
+          if (remark.stringify(node) === opts.before) {
             switched = true
             return node
           }
           else {
-            return behead(node, options)
+            return behead(node, opts)
           }
         }
       }
 
-      if (options.between) {
+      /**
+       * Manipulates nodes between but not including the two given strings,
+       * starting with options.between[0] and ending with
+       * options.between[1].
+       *
+       * @name options.between
+       * @example
+       *
+       * remark(behead, {weight: 1, between: ['# Hello', '# World']})
+       *   .process('# Hello\n# Between\n# World')
+       *
+       *   => '# Hello\n## Between\n# World\n'
+       */
+      if (opts.between) {
         if (switched) {
 
-          if (remark.stringify(node) === options.between[1]) {
+          if (remark.stringify(node) === opts.between[1]) {
             switched = false
             return node
           }
 
-          return behead(node, options)
+          return behead(node, opts)
         }
 
-        if (remark.stringify(node) === options.between[0]) {
+        if (remark.stringify(node) === opts.between[0]) {
           switched = true
           return node
         }
 
         return node
       }
-
     })
   }
 }
 
-export function behead(node, options) {
+export function behead(node, opts) {
 
   if (node.type && node.type === 'heading') {
 
-    if (options.weight < 0) {
-      node.depth += Math.abs(options.weight)
+    if (opts.weight < 0) {
+      node.depth += Math.abs(opts.weight)
 
       if (node.depth > MINWEIGHT) {
 
-        if (options.preserve) {
+        if (opts.preserve) {
           node.depth = MINWEIGHT
         }
         else {
@@ -104,7 +163,7 @@ export function behead(node, options) {
       }
     }
     else {
-      node.depth -= options.weight
+      node.depth -= opts.weight
 
       if (node.depth < MAXWEIGHT) {
         node.depth = MAXWEIGHT

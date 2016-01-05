@@ -1,54 +1,75 @@
 # remark-behead
 
+###### behead
 
-Behead is a [remark](https://github.com/wooorm/remark) plugin to increase and decrease the weight of headings.  Passing a negative value to the weight option will decrease the heading weight and passing a possative value to the weight option will increase the heading weight.
-
-##
+Behead is a [remark](https://github.com/wooorm/remark) plugin to 
+increase and decrease the weight of markdown headings. Passing a 
+negative value to the weight option will decrease the heading weight.
+Passing a positive value to the weight option will increase the heading 
+weight.
 
 ###### install
 
 ```bash
-npm i --save remark-behead
+npm install --save remark-behead
 ```
 
-##
+**Meta**
 
-###### example
+-   **version**: 1.4.9
+-   **author**: mrzmmr
+-   **license**: [ISC](https://opensource.org/licenses/ISC)
 
-```js
-remark.use(behead).process('## Heading')
-//=> '## Heading\n'
+###### options
 
-remark.use(behead, {weight: 1}).process('### Heading')
-//=> '## Heading\n'
+**Properties**
 
-remark.use(behead, {weight: -1}).process('### Heading')
-//=> '#### Heading\n'
+-   `preserve` **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Defaults to true
+-   `before` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Defaults to null
+-   `after` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Defaults to null
+-   `weight` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Defaults to 0
 
-remark.use(behead, {weight: 10}).process('### Heading')
-//=> '# Heading\n'
+###### options.after
 
-remark.use(behead, {weight: -10}).process('### Heading')
-//=> '###### Heading\n'
+Manipulates nodes after but not including the given string.
+**Note:** When using this option, behead will start working after 
+the first occurrence of the given string.
 
-remark.use(behead, {weight: -10, preserve: false}).process('### Heading')
-//=> ' Heading\n'
+**Examples**
+
+```javascript
+remark.use(behead, {weight: 1, after: '# After this'})
+  .process('# After this\n## Hello\n## World')
+
+  => '# After this\n# Hello\n# World\n'
 ```
 
-##
+###### options.before
 
-###### default options
+Manipulates nodes before but not including the given string.
+**Note:** When using this option, behead will stop working at 
+the first occurrence of the given string.
 
-```js
-const OPTIONS = {
-  preseerve: true,
-  after: '',
-  weight: 0
-}
+**Examples**
+
+```javascript
+remark.use(behead, {weight: 1, before: '# Before this'})
+  .process('# Hello\n# World\n# Before this')
+
+  => '## Hello\n## World\n# Before this\n'
 ```
 
-##
+###### options.between
 
-###### license
+Manipulates nodes between but not including the two given strings,
+starting with options.between[0] and ending with
+options.between[1].
 
-[ISC]('./License.md') [https://opensource.org/licenses/ISC](https://opensource.org/licenses/ISC)
+**Examples**
+
+```javascript
+remark(behead, {weight: 1, between: ['# Hello', '# World']})
+  .process('# Hello\n# Between\n# World')
+
+  => '# Hello\n## Between\n# World\n'
+```
