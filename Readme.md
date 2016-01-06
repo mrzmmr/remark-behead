@@ -14,7 +14,7 @@ weight.
 
 **Meta**
 
--   **version**: 1.4.10
+-   **version**: 1.4.11
 -   **author**: mrzmmr
     </br></br>
 
