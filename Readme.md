@@ -28,7 +28,7 @@ weight.
 -   `weight` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Defaults to 0
     </br></br>
 
-#### options.after
+###### options.after
 
 Manipulates heading nodes after but not including the given 
 string. _**Note:** When using this option, behead will start 
@@ -43,7 +43,7 @@ remark.use(behead, {weight: 1, after: '# After this'})
   => '# After this\n# Hello\n# World\n'
 ```
 
-#### options.before
+###### options.before
 
 Manipulates heading nodes before but not including the given 
 string. _**Note:** When using this option, behead will stop 
@@ -58,7 +58,7 @@ remark.use(behead, {weight: 1, before: '# Before this'})
   => '## Hello\n## World\n# Before this\n'
 ```
 
-#### options.between
+###### options.between
 
 Manipulates hading nodes between but not including the two given 
 strings, starting with options.between[0] and ending with

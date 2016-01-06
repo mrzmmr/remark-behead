@@ -1,25 +1,28 @@
 /**
- * Behead is a [remark](https://github.com/wooorm/remark) plugin to 
- * increase and decrease the weight of markdown headings. Passing a 
- * negative value to the weight option will decrease the heading weight.
- * Passing a positive value to the weight option will increase the heading 
- * weight.
- *
- * ## install
- *
- * ```
- * npm install --save remark-behead
- * ```
- *
- * @module behead
- * @version 1.4.9
- * @author mrzmmr
- * </br></br>
- */
+
+-   Behead is a [remark](https://github.com/wooorm/remark) plugin to 
+-   increase and decrease the weight of markdown headings. Passing a 
+-   negative value to the weight option will decrease the heading weight.
+-   Passing a positive value to the weight option will increase the heading 
+-   weight.
+    *
+-   ## install
+    *
+-   ```
+
+    ```
+-   npm install --save remark-behead
+-       *
+-   @module behead
+-   @version 1.4.9
+-   @author mrzmmr
+-   </br></br>
+    */
 
 /*
- * Imports
- */
+
+-   Imports
+    */
 
 import 'source-map-support'
 
@@ -27,26 +30,28 @@ import {default as remark} from 'remark'
 import {default as defop} from 'defop'
 
 /*
- * Constants
- */
+
+-   Constants
+    */
 
 const MINWEIGHT = 6
 const MAXWEIGHT = 1
 
 /**
- * @property {Boolean} preserve - Defaults to true
- * @property {String} before    - Defaults to null
- * @property {String} after     - Defaults to null
- * @property {Number} weight    - Defaults to 0
- * </br></br>
- */
-let options = {
-  preserve: true,
-  between: null,
-  before: null,
-  after: null,
-  weight: 0
-}
+
+-   @property {Boolean} preserve - Defaults to true
+-   @property {String} before    - Defaults to null
+-   @property {String} after     - Defaults to null
+-   @property {Number} weight    - Defaults to 0
+-   </br></br>
+     */
+    let options = {
+      preserve: true,
+      between: null,
+      before: null,
+      after: null,
+      weight: 0
+    }
 
 module.exports = function plugin(processor, opts=options) {
   opts = defop(opts, options)
@@ -145,6 +150,7 @@ module.exports = function plugin(processor, opts=options) {
         return node
       }
     })
+
   }
 }
 
@@ -172,6 +178,7 @@ export function behead(node, opts) {
         node.depth = MAXWEIGHT
       }
     }
+
   }
   return node
 }
