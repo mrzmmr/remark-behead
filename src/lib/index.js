@@ -3,7 +3,9 @@
  * increase and decrease the weight of markdown headings. Passing a 
  * negative value to the weight option will decrease the heading weight.
  * Passing a positive value to the weight option will increase the heading 
- * weight.
+ * weightld
+ *
+ * [![Build Status](https://travis-ci.org/mrzmmr/remark-behead.svg?branch=master)](https://travis-ci.org/mrzmmr/remark-behead).
  *
  * ## install
  *
