@@ -21,6 +21,8 @@
  * Imports
  */
 
+import 'source-map-support'
+
 import {default as remark} from 'remark'
 import {default as defop} from 'defop'
 

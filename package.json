@@ -13,12 +13,19 @@
     "lint": "eslint src/lib/index.js",
     "clean": "rm -rf dst .nyc_output"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrzmmr/remark-behead.git"
+  },
   "remarkConfig": {
     "output": "./Readme.md",
     "plugins": {
       "./dst/lib/index.js": {
         "weight": -2,
-        "between": ["**Properties**", "# license"]
+        "between": [
+          "**Properties**",
+          "# license"
+        ]
       }
     }
   },
@@ -42,11 +49,12 @@
     "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
     "babel-plugin-transform-es2015-block-scoping": "^6.3.13",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.3.16",
-    "documentation": "github:documentationjs/documentation",
     "babel-plugin-transform-es2015-parameters": "^6.3.25",
+    "defop": "^1.1.4",
+    "documentation": "github:documentationjs/documentation",
     "eslint": "^1.10.3",
     "remark": "^3.1.3",
-    "defop": "^1.1.4",
+    "source-map-support": "^0.4.0",
     "tap": "^2.3.3"
   }
 }

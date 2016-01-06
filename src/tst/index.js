@@ -1,3 +1,5 @@
+import 'source-map-support'
+
 import * as fs from 'fs'
 import * as tap from 'tap'
 import {default as remark} from 'remark'
