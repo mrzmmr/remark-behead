@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/mrzmmr/remark-behead.svg?branch=master)](https://travis-ci.org/mrzmmr/remark-behead)
 
+[![Coverage Status](https://coveralls.io/repos/mrzmmr/remark-behead/badge.svg?branch=master&service=github)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
+
 ## behead
 
 Behead is a [remark](https://github.com/wooorm/remark) plugin to 
