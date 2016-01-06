@@ -1,4 +1,6 @@
-# remark-behead
+# remark-beheald
+
+[![Build Status](https://travis-ci.org/mrzmmr/remark-behead.svg?branch=master)](https://travis-ci.org/mrzmmr/remark-behead)
 
 ## behead
 
