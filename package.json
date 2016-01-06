@@ -1,15 +1,18 @@
 {
   "name": "remark-behead",
-  "version": "1.4.11",
+  "version": "1.4.12",
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
     "readme": "documentation readme src/lib/index.js --readme-file Readme.md -s \"remark-behead\"",
-    "postreadme": "mv babelrc .babelrc; remark Readme.md",
-    "build": "babel --source-maps --out-dir dst src",
+      "postreadme": "mv babelrc .babelrc; remark Readme.md",
+      "prereadme": "mv .babelrc babelrc",
+
     "test": "tap --cov -R spec dst/tst/index.js",
-    "pretest": "npm run build && npm run lint",
-    "prereadme": "mv .babelrc babelrc",
+      "pretest": "npm run build && npm run lint",
+
+    "prepublish": "npm t; npm run readme",
+    "build": "babel --out-dir dst src",
     "lint": "eslint src/lib/index.js",
     "clean": "rm -rf dst .nyc_output"
   },
@@ -53,7 +56,6 @@
     "babel-plugin-transform-es2015-parameters": "^6.3.25",
     "eslint": "^1.10.3",
     "remark": "^3.1.3",
-    "source-map-support": "^0.4.0",
     "tap": "^2.3.3"
   }
 }
