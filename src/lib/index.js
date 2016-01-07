@@ -3,7 +3,7 @@
  * increase and decrease the weight of markdown headings. Passing a 
  * negative value to the weight option will decrease the heading weight.
  * Passing a positive value to the weight option will increase the heading 
- * weightld
+ * weight
  *
  * [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
  *
@@ -16,9 +16,8 @@
  * ```
  *
  * @module behead
- * @version 1.4.15
+ * @version 1.5.1
  * @author mrzmmr
- * </br></br>
  */
 
 /*
@@ -38,7 +37,6 @@ const MAXWEIGHT = 1
  * @property {String} before    - Defaults to null
  * @property {String} after     - Defaults to null
  * @property {Number} weight    - Defaults to 0
- * </br></br>
  */
 let options = {
   preserve: true,

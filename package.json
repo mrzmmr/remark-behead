@@ -1,6 +1,6 @@
 {
   "name": "remark-behead",
-  "version": "1.4.15",
+  "version": "1.5.1",
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "postreadme": "mv babelrc .babelrc; remark Readme.md",
     "prereadme": "mv .babelrc babelrc",
     "test": "tap --cov -R spec dst/tst/index.js",
-    "pretest": "npm run clean; npm run build && npm run lint",
+    "pretest": "npm run clean; npm run build; npm run lint",
     "prepublish": "npm t; npm run readme",
     "build": "babel --out-dir dst src",
     "lint": "eslint src/lib/index.js",
