@@ -5,7 +5,7 @@
  * Passing a positive value to the weight option will increase the heading 
  * weightld
  *
- * [![Build Status](https://travis-ci.org/mrzmmr/remark-behead.svg?branch=master)](https://travis-ci.org/mrzmmr/remark-behead).
+ * [![Build Status](https://img.shields.io/circleci/project/BrightFlair/PHP.Gt/master.svg)]
  *
  * ## install
  *
@@ -14,7 +14,7 @@
  * ```
  *
  * @module behead
- * @version 1.4.13
+ * @version 1.4.15
  * @author mrzmmr
  * </br></br>
  */
