@@ -8,8 +8,9 @@ negative value to the weight option will decrease the heading weight.
 Passing a positive value to the weight option will increase the heading 
 weightld
 
-![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)
-![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg)
+[![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
+
+[![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
 
 ### install
 
