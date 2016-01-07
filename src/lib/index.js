@@ -5,7 +5,7 @@
  * Passing a positive value to the weight option will increase the heading 
  * weightld
  *
- * [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)]
+ * ![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)
  *
  * ## install
  *
