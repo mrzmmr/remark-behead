@@ -1,0 +1,5 @@
+test:
+  override:
+    - nvm use 0.10 && ./runtest
+    - nvm use 0.12 && ./runtest
+    - nvm use 4.0 && ./runtest
