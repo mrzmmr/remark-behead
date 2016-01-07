@@ -9,7 +9,7 @@ Passing a positive value to the weight option will increase the heading
 weightld
 
 ![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)
-![Coverage Status](https://img.shields.io/coveralls/jekyll/jekyll/master.svg)
+![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg)
 
 ### install
 
