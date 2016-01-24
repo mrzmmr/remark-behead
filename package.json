@@ -4,13 +4,13 @@
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
-    "readme": "documentation readme src/lib/index.js --readme-file Readme.md -s \".\"",
-    "test": "tap --cov -R spec dst/tst/index.js",
-    "pretest": "npm run build; npm run lint",
+    "lint": "eslint src/lib",
+    "prepublish": "npm run build",
     "build": "babel --out-dir dst src",
-    "lint": "eslint src/lib/index.js",
-    "prepublish": "npm run build"
-
+    "all": "npm run test; npm run readme",
+    "pretest": "npm run lint; npm run build",
+    "test": "tap --cov -R spec dst/tst/index.js",
+    "readme": "mv .babelrc b; documentation readme src/lib/index.js --readme-file Readme.md -s \".\"; mv b .babelrc"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,11 @@
     "defop": "^1.1.4"
   },
   "devDependencies": {
-    "babel": "<5.x",
+    "babel-cli": "^6.4.5",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.4.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.4.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.4.5",
+    "babel-plugin-transform-es2015-parameters": "^6.4.5",
     "documentation": "github:documentationjs/documentation",
     "eslint": "^1.10.3",
     "remark": "^3.1.3",
