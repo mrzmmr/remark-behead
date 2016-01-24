@@ -6,26 +6,30 @@
  * weightld
  *
  * [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
- *
  * [![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
  *
  * ## install
  *
+ * ```sh
+ * npm install [ --save ] remark-behead
  * ```
- * npm install --save remark-behead
+ *
+ * #### then
+ *
+ * ```js
+ * import remarkBehead from 'remark-behead'
  * ```
  *
  * @module behead
  * @version 1.4.15
  * @author mrzmmr
- * </br></br>
  */
 
 /*
  * Imports
  */
 import {default as remark} from 'remark'
-import {default as defop} from 'defop'
+import defop from 'defop'
 
 /*
  * Constants

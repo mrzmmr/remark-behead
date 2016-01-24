@@ -4,31 +4,17 @@
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
-    "readme": "documentation readme src/lib/index.js --readme-file Readme.md -s \"remark-behead\"",
-    "postreadme": "mv babelrc .babelrc; remark Readme.md",
-    "prereadme": "mv .babelrc babelrc",
+    "readme": "documentation readme src/lib/index.js --readme-file Readme.md -s \".\"",
     "test": "tap --cov -R spec dst/tst/index.js",
-    "pretest": "npm run clean; npm run build && npm run lint",
-    "prepublish": "npm t; npm run readme",
+    "pretest": "npm run build; npm run lint",
     "build": "babel --out-dir dst src",
     "lint": "eslint src/lib/index.js",
-    "clean": "rm -rf dst .nyc_output"
+    "prepublish": "npm run build"
+
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mrzmmr/remark-behead.git"
-  },
-  "remarkConfig": {
-    "output": "./Readme.md",
-    "plugins": {
-      "./dst/lib/index.js": {
-        "weight": -2,
-        "between": [
-          "**Properties**",
-          "# license"
-        ]
-      }
-    }
   },
   "keywords": [
     "mdast",
@@ -46,7 +32,7 @@
     "defop": "^1.1.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
+    "babel": "<5.x",
     "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
     "babel-plugin-transform-es2015-block-scoping": "^6.3.13",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.3.16",
