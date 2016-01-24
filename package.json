@@ -1,6 +1,6 @@
 {
   "name": "remark-behead",
-  "version": "1.4.15",
+  "version": "1.5.1",
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
@@ -33,10 +33,6 @@
   },
   "devDependencies": {
     "babel": "<5.x",
-    "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
-    "babel-plugin-transform-es2015-block-scoping": "^6.3.13",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.16",
-    "babel-plugin-transform-es2015-parameters": "^6.3.25",
     "documentation": "github:documentationjs/documentation",
     "eslint": "^1.10.3",
     "remark": "^3.1.3",

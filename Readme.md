@@ -6,7 +6,7 @@ Behead is a [remark](https://github.com/wooorm/remark) plugin to
 increase and decrease the weight of markdown headings. Passing a 
 negative value to the weight option will decrease the heading weight.
 Passing a positive value to the weight option will increase the heading 
-weightld
+weight
 
 [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
 [![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
@@ -25,7 +25,7 @@ import remarkBehead from 'remark-behead'
 
 **Meta**
 
--   **version**: 1.4.15
+-   **version**: 1.5.1
 -   **author**: mrzmmr
 
 ## options
@@ -36,7 +36,6 @@ import remarkBehead from 'remark-behead'
 -   `before` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Defaults to null
 -   `after` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Defaults to null
 -   `weight` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Defaults to 0
-    </br></br>
 
 ## options.after
 
