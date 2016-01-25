@@ -1,7 +1,7 @@
 import fs from 'fs'
 import tap from 'tap'
+import behead from '../lib/index'
 import {default as remark} from 'remark'
-import {default as behead} from '../lib/index'
 
 const MAXWEIGHT = '#'
 const MINWEIGHT = '######'

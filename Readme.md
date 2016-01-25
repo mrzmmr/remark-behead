@@ -3,15 +3,14 @@
 ## behead
 
 [![AppVeyor branch](https://img.shields.io/appveyor/ci/mrzmmr/remark-behead/master.svg?style=flat-square)](https://ci.appveyor.com/project/mrzmmr/remark-behead)
-[![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
-[![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
+[![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg?style=flat-square)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
+[![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg?style=flat-square)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
 
 Behead is a [remark](https://github.com/wooorm/remark) plugin to 
 increase and decrease the weight of markdown headings. Passing a 
 negative value to the weight option will decrease the heading weight.
 Passing a positive value to the weight option will increase the heading 
 weight
-
 
 ### install
 
@@ -27,7 +26,7 @@ import behead from 'remark-behead'
 
 **Meta**
 
--   **version**: 1.5.1
+-   **version**: 1.5.2
 -   **author**: mrzmmr
 
 ## options
