@@ -4,11 +4,10 @@
   "description": "Add or remove heading levels",
   "main": "dst/lib/index.js",
   "scripts": {
-    "lint": "eslint src/lib",
     "prepublish": "npm run build",
     "build": "babel --out-dir dst src",
     "all": "npm run test; npm run readme",
-    "pretest": "npm run lint; npm run build",
+    "pretest": "eslint src/lib; npm run build",
     "test": "tap --cov -R spec dst/tst/index.js",
     "readme": "mv .babelrc b; documentation readme src/lib/index.js --readme-file Readme.md -s \".\"; mv b .babelrc"
   },
