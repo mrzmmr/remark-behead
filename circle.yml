@@ -9,6 +9,10 @@ notify:
 
 test:
   override:
-    - nvm use 0.10 && npm t
-    - nvm use 0.12 && npm t
-    - nvm use 4.0 && npm t
+    - nvm use 0.10.0 && npm t
+    - nvm use 0.12.0 && npm t
+    - nvm use 4.0.0 && npm t
+    - nvm use 4.1.0 && npm t
+    - nvm use 4.2.2 && npm t
+    - nvm use 5.0.0 && npm t
+    - nvm use 5.1.0 && npm t

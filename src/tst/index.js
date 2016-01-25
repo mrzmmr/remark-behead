@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as tap from 'tap'
+import fs from 'fs'
+import tap from 'tap'
 import {default as remark} from 'remark'
 import {default as behead} from '../lib/index'
 
