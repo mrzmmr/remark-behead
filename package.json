@@ -28,7 +28,8 @@
   "author": "mrzmmr",
   "license": "ISC",
   "dependencies": {
-    "defop": "^1.1.4"
+    "defop": "^1.1.4",
+    "unist-util-visit": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
@@ -38,7 +39,7 @@
     "babel-plugin-transform-es2015-parameters": "^6.4.5",
     "documentation": "github:documentationjs/documentation",
     "eslint": "^1.10.3",
-    "remark": "^3.1.3",
+    "remark": "^6.0.0",
     "source-map-support": "^0.4.0",
     "tap": "^2.3.3"
   }
