@@ -3,10 +3,10 @@
  * [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg?style=flat-square)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
  * [![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg?style=flat-square)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
  *
- * Behead is a [remark](https://github.com/wooorm/remark) plugin to 
- * increase and decrease the weight of markdown headings. Passing a 
+ * Behead is a [remark](https://github.com/wooorm/remark) plugin to
+ * increase and decrease the weight of markdown headings. Passing a
  * negative value to the weight option will decrease the heading weight.
- * Passing a positive value to the weight option will increase the heading 
+ * Passing a positive value to the weight option will increase the heading
  * weight
  *
  * ## install
@@ -29,7 +29,7 @@
 /*
  * Imports
  */
-import {default as remark} from 'remark'
+import visit from 'unist-util-visit'
 import defop from 'defop'
 
 /*
@@ -54,102 +54,98 @@ let options = {
 
 module.exports = function plugin(processor, opts=options) {
   opts = defop(opts, options)
+  return ast => visit(ast, visitor(processor, opts));
+}
 
+function visitor (processor, opts) {
   let switched = false
+  return node => {
+    if (!opts.between && !opts.before && !opts.after) {
+      return behead(node, opts)
+    }
 
-  return (ast, file) => {
-    return ast.children = ast.children.map((node) => {
+    /**
+     * Manipulates heading nodes after but not including the given
+     * string. _**Note:** When using this option, behead will start
+     * working after the first occurrence of the given string._
+     *
+     * @name options.after
+     *
+     * @example
+     * remark.use(behead, {weight: 1, after: '# After this'})
+     *   .process('# After this\n## Hello\n## World')
+     *
+     *   => '# After this\n# Hello\n# World\n'
+     */
+    if (opts.after) {
+      if (switched) {
+        behead(node, opts)
+      }
+      else {
+        if (processor.stringify(node) === opts.after) {
+          switched = true
+        }
+      }
+    }
 
-      if (!opts.between && !opts.before && !opts.after) {
+
+    /**
+     * Manipulates heading nodes before but not including the given
+     * string. _**Note:** When using this option, behead will stop
+     * working at the first occurrence of the given string._
+     *
+     * @name options.before
+     *
+     * @example
+     * remark.use(behead, {weight: 1, before: '# Before this'})
+     *   .process('# Hello\n# World\n# Before this')
+     *
+     *   => '## Hello\n## World\n# Before this\n'
+     */
+    if (opts.before) {
+      if (!switched) {
+
+        if (processor.stringify(node) === opts.before) {
+          switched = true
+          return
+        }
+
+        return behead(node, opts)
+      }
+      return
+    }
+
+    /**
+     * Manipulates heading nodes between but not including the two given
+     * strings, starting with options.between[0] and ending with
+     * options.between[1].
+     *
+     * @name options.between
+     *
+     * @example
+     * remark(behead, {weight: 1, between: ['# Hello', '# World']})
+     *   .process('# Hello\n# Between\n# World')
+     *
+     *   => '# Hello\n## Between\n# World\n'
+     */
+    if (opts.between) {
+      if (switched) {
+
+        if (processor.stringify(node) === opts.between[1]) {
+          switched = false
+          return
+        }
+
         return behead(node, opts)
       }
 
-      /**
-       * Manipulates heading nodes after but not including the given 
-       * string. _**Note:** When using this option, behead will start 
-       * working after the first occurrence of the given string._
-       *
-       * @name options.after
-       *
-       * @example
-       * remark.use(behead, {weight: 1, after: '# After this'})
-       *   .process('# After this\n## Hello\n## World')
-       *
-       *   => '# After this\n# Hello\n# World\n'
-       */
-      if (opts.after) {
-        if (switched) {
-          return behead(node, opts)
-        }
-        else {
-          if (remark.stringify(node) === opts.after) {
-            switched = true
-          }
-          return node
-        }
+      if (processor.stringify(node) === opts.between[0]) {
+        switched = true
+        return
       }
 
-      /**
-       * Manipulates heading nodes before but not including the given 
-       * string. _**Note:** When using this option, behead will stop 
-       * working at the first occurrence of the given string._
-       *
-       * @name options.before
-       *
-       * @example
-       * remark.use(behead, {weight: 1, before: '# Before this'})
-       *   .process('# Hello\n# World\n# Before this')
-       *
-       *   => '## Hello\n## World\n# Before this\n'
-       */
-      if (opts.before) {
-        if (switched) {
-          return node
-        }
-        else {
-          if (remark.stringify(node) === opts.before) {
-            switched = true
-            return node
-          }
-          else {
-            return behead(node, opts)
-          }
-        }
-      }
-
-      /**
-       * Manipulates hading nodes between but not including the two given 
-       * strings, starting with options.between[0] and ending with
-       * options.between[1].
-       *
-       * @name options.between
-       *
-       * @example
-       * remark(behead, {weight: 1, between: ['# Hello', '# World']})
-       *   .process('# Hello\n# Between\n# World')
-       *
-       *   => '# Hello\n## Between\n# World\n'
-       */
-      if (opts.between) {
-        if (switched) {
-
-          if (remark.stringify(node) === opts.between[1]) {
-            switched = false
-            return node
-          }
-
-          return behead(node, opts)
-        }
-
-        if (remark.stringify(node) === opts.between[0]) {
-          switched = true
-          return node
-        }
-
-        return node
-      }
-    })
-
+      return
+    }
   }
 }
 
