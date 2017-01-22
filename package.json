@@ -28,7 +28,7 @@
     "remark-behead"
   ],
   "author": "mrzmmr",
-  "license": "ISC",
+  "license": "MIT",
   "babel": {
     "presets": [
       "env"
@@ -52,7 +52,7 @@
     "babel-preset-env": "^1.1.8",
     "codecov": "^1.0.1",
     "documentation": "github:documentationjs/documentation",
-    "eslint": "^1.10.3",
+    "eslint": "^3.14.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
