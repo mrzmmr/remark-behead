@@ -1,36 +1,17 @@
 /**
- * [![AppVeyor branch](https://img.shields.io/appveyor/ci/mrzmmr/remark-behead/master.svg?style=flat-square)](https://ci.appveyor.com/project/mrzmmr/remark-behead)
- * [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg?style=flat-square)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
- * [![Coverage Status](https://img.shields.io/coveralls/mrzmmr/remark-behead/master.svg?style=flat-square)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
- *
  * Behead is a [remark](https://github.com/wooorm/remark) plugin to 
  * increase and decrease the weight of markdown headings. Passing a 
  * negative value to the weight option will decrease the heading weight.
  * Passing a positive value to the weight option will increase the heading 
  * weight
  *
- * ## install
- *
- * ```sh
- * npm install [ --save ] remark-behead
- * ```
- *
- * #### then
- *
- * ```js
- * import behead from 'remark-behead'
- * ```
- *
  * @module behead
  * @version 1.5.2
  * @author mrzmmr
  */
 
-/*
- * Imports
- */
-import {default as remark} from 'remark'
-import defop from 'defop'
+const remark = require('remark')
+const defaultsdeep = require('lodash.defaultsdeep')
 
 /*
  * Constants
@@ -53,7 +34,7 @@ let options = {
 }
 
 module.exports = function plugin(processor, opts=options) {
-  opts = defop(opts, options)
+  opts = defaultsdeep(opts, options)
 
   let switched = false
 
