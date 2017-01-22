@@ -1,8 +1,8 @@
 {
   "name": "remark-behead",
-  "version": "1.5.3",
-  "description": "Add or remove heading levels",
-  "main": "dst/lib/index.js",
+  "version": "1.5.5",
+  "description": "Increase or decrease heading weights",
+  "main": "index.js",
   "scripts": {
     "tape": "tape test/*.js",
     "babel": "babel src -d .",
@@ -10,8 +10,7 @@
     "test": "npm run babel && nyc npm run tape",
     "prepublish": "npm t && npm run clean && npm run babel",
     "clean": "rimraf index.js test coverage .nyc_output coverage.lcov",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "readme": "mv .babelrc b; documentation readme src/lib/index.js --readme-file Readme.md -s \".\"; mv b .babelrc"
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
@@ -45,13 +44,12 @@
     ]
   },
   "dependencies": {
-    "defop": "^1.1.4"
+    "lodash.defaultsdeep": "^4.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-preset-env": "^1.1.8",
     "codecov": "^1.0.1",
-    "documentation": "github:documentationjs/documentation",
     "eslint": "^3.14.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
