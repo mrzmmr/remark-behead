@@ -90,10 +90,6 @@ remark(behead, {weight: 1, between: ['# Hello', '# World']})
   => '# Hello\n## Between\n# World\n'
 ```
 
-## Contribute
-
-PRs accepted and greatly appreciated.
-
 ## Tests
 
 ```sh
@@ -101,13 +97,20 @@ npm install
 npm test
 ```
 
+## Contribute
+
+PRs accepted and greatly appreciated.
+
+
 ## Dependencies
 
 - [lodash.defaultsdeep](https://github.com/lodash/lodash): The lodash method `_.defaultsDeep` exported as a module.
+- [remark](https://github.com/wooorm/remark/tree/master/packages): Markdown processor powered by plugins
 
 ## Dev Dependencies
 
 - [babel-cli](https://github.com/babel/babel/tree/master/packages): Babel command line.
+- [babel-eslint](https://github.com/babel/babel-eslint): Custom parser for ESLint
 - [babel-preset-env](https://github.com/babel/babel-preset-env): A Babel preset for each environment.
 - [codecov](https://github.com/codecov/codecov-node): Uploading report to Codecov: https://codecov.io
 - [eslint](https://github.com/eslint/eslint): An AST-based pattern checker for JavaScript.
@@ -115,9 +118,10 @@ npm test
 - [eslint-plugin-promise](https://github.com/xjamundx/eslint-plugin-promise): Enforce best practices for JavaScript promises
 - [eslint-plugin-standard](https://github.com/xjamundx/eslint-plugin-standard): ESlint Plugin for the Standard Linter
 - [nyc](https://github.com/istanbuljs/nyc): the Istanbul command line interface
-- [remark](https://github.com/wooorm/remark): Markdown processor powered by plugins
 - [rimraf](https://github.com/isaacs/rimraf): A deep deletion module for node (like `rm -rf`)
+- [tap-spec](https://github.com/scottcorgan/tap-spec): Formatted TAP output like Mocha&#39;s spec reporter
 - [tape](https://github.com/substack/tape): tap-producing test harness for node and browsers
+
 
 ## License
 
