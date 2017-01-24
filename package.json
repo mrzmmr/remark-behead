@@ -4,12 +4,16 @@
   "description": "Increase or decrease heading weights",
   "main": "index.js",
   "scripts": {
-    "tape": "tape test/*.js",
-    "babel": "babel src -d .",
+    "lint": "eslint --fix src",
+    "tape": "tape test/*.js | tap-spec",
+    "babel": "src -d .",
+    "clean": "rimraf coverage .nyc_output coverage.lcov",
+    "test": "npm run lint && npm run babel && nyc npm run tape",
     "posttest": "npm run coverage",
-    "test": "npm run babel && nyc npm run tape",
-    "prepublish": "npm t && npm run clean && npm run babel",
-    "clean": "rimraf index.js test coverage .nyc_output coverage.lcov",
+    "prepublish": "npm t && npm run clean",
+    "pregit": "npm t && npm run clean",
+    "git": "git commit -a -m",
+    "postgit": "git push github master",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
@@ -34,6 +38,7 @@
     ]
   },
   "eslintConfig": {
+    "parse": "babel-eslint",
     "env": {
       "node": true
     },
@@ -44,10 +49,12 @@
     ]
   },
   "dependencies": {
-    "lodash.defaultsdeep": "^4.6.0"
+    "lodash.defaultsdeep": "^4.6.0",
+    "remark": "^6.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
+    "babel-eslint": "^7.1.1",
     "babel-preset-env": "^1.1.8",
     "codecov": "^1.0.1",
     "eslint": "^3.14.0",
@@ -55,8 +62,8 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "nyc": "^10.1.2",
-    "remark": "^3.1.3",
     "rimraf": "^2.5.4",
+    "tap-spec": "^4.1.1",
     "tape": "^4.6.3"
   }
 }
