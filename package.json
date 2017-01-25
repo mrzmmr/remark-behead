@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "eslint --fix src",
     "tape": "tape test/*.js | tap-spec",
-    "babel": "src -d .",
+    "babel": "babel src -d .",
     "clean": "rimraf coverage .nyc_output coverage.lcov",
-    "test": "npm run lint && npm run babel && nyc npm run tape",
+    "test": "npm run babel && nyc npm run tape",
     "posttest": "npm run coverage",
     "prepublish": "npm t && npm run clean",
     "pregit": "npm t && npm run clean",
@@ -50,7 +50,13 @@
   },
   "dependencies": {
     "lodash.defaultsdeep": "^4.6.0",
-    "remark": "^6.2.0"
+    "lodash.intersectionby": "^4.7.0",
+    "lodash.isarray": "^4.0.0",
+    "lodash.isstring": "^4.0.1",
+    "unist-util-find": "^1.0.1",
+    "unist-util-find-all-after": "^1.0.0",
+    "unist-util-find-all-before": "^2.0.0",
+    "unist-util-is": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
