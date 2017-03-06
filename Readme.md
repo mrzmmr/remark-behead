@@ -1,20 +1,14 @@
 # remark-behead
 
 [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg?style=flat-square)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
-[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/remark-behead.svg)](https://codecov.io/gh/mrzmmr/remark-behead)
-[![David](https://img.shields.io/david/mrzmmr/remark-behead.svg)](https://david-dm.org/)
-[![David](https://img.shields.io/david/dev/mrzmmr/remark-behead.svg)](https://david-dm.org/)
 [![npm](https://img.shields.io/npm/v/remark-behead.svg)](https://www.npmjs.com/package/array-2-object.svg)
 
 
-> Increase or decrease heading weights
+> Increase or decrease heading depth
 
 Remark-behead is a [remark](https://github.com/wooorm/remark) plugin to 
-increase and decrease the weight of markdown headings. Passing a 
-negative value to the weight option will decrease the heading weight.
-Passing a positive value to the weight option will increase the heading 
-weight.
+increase or decrease heading depths. Passing a negative value to the depth option will decrease the heading depth. Passing a positive value to the depth option will increase the heading depth.
 
 
 ## Table of Contents
@@ -34,61 +28,93 @@ npm install --save remark-behead
 
 ```js
 const behead = require('remark-behead')
+const remark = require('remark')
+
+remark()
+  .use(behead, { after: 0, depth: 1 })
+  .process([
+    '# foo',
+    '# bar',
+    '# baz'
+  ].join('\n'))
+  .then(vfile => vfile.toString())
+  .then(markdown => console.log(markdown))
+  .catch(err => console.error(err))
+/*
+ * result :
+ *
+ * # foo
+ *
+ * ## bar
+ *
+ * ## baz
+ *
+ */
+
 ```
 
 ### Options
 
-**Properties**
+-	`after` [ [string](https://developer.mozilla.org/en-us/docs/web/javascript/reference/global_objects/string) | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | [Node](https://github.com/syntax-tree/unist#node) ]
 
--   `preserve` **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Defaults to true
--   `before` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Defaults to null
--   `after` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Defaults to null
--   `weight` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** Defaults to 0
+-   `before` [ [string](https://developer.mozilla.org/en-us/docs/web/javascript/reference/global_objects/string) | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | [Node](https://github.com/syntax-tree/unist#node) ]
 
-### Options.after
+
+-	`between` [array](https://developer.mozilla.org/en-us/docs/web/javascript/reference/global_objects/array) **[** [ [string](https://developer.mozilla.org/en-us/docs/web/javascript/reference/global_objects/string) | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | [Node](https://github.com/syntax-tree/unist#node) ] **,** [ [string](https://developer.mozilla.org/en-us/docs/web/javascript/reference/global_objects/string) | [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | [Node](https://github.com/syntax-tree/unist#node) ] **]**
+
+
+
+### options.after
 
 Manipulates heading nodes after but not including the given 
-string. _**Note:** When using this option, behead will start 
-working after the first occurrence of the given string._
+string. Behead will start working after the first occurrence of the given string.
 
-**Example**
+**example**
 
-```javascript
-remark.use(behead, {weight: 1, after: '# After this'})
-  .process('# After this\n## Hello\n## World')
+```js
+remark()
+  .use(behead, { after: 'foo', depth: 1 })
+  .processSync('# foo\n# bar\n# baz')
 
-  => '# After this\n# Hello\n# World\n'
+  /* # foo\n\n## bar\n\n## baz\n */
 ```
 
-### Options.before
+### options.before
 
 Manipulates heading nodes before but not including the given 
-string. _**Note:** When using this option, behead will stop 
-working at the first occurrence of the given string._
+string. Behead will stop 
+working at the first occurrence of the given string.
 
-**Example**
+**example**
 
-```javascript
-remark.use(behead, {weight: 1, before: '# Before this'})
-  .process('# Hello\n# World\n# Before this')
+```js
+remark()
+  .use(behead, { before: 'baz', depth: 1 })
+  .processSync('# foo\n\n# bar\n# baz\n')
 
-  => '## Hello\n## World\n# Before this\n'
+  /* ## foo\n\n## bar\n\n# baz\n */
 ```
 
-### Options.between
+### options.between
 
 Manipulates hading nodes between but not including the two given 
 strings, starting with options.between[0] and ending with
 options.between[1].
 
-**Example**
+**example**
 
-```javascript
-remark(behead, {weight: 1, between: ['# Hello', '# World']})
-  .process('# Hello\n# Between\n# World')
+```js
+remark()
+  .use(behead, { between: [ 0, 'baz' ], depth: 1 })
+  .processSync('# foo\n# bar\n# baz')
 
-  => '# Hello\n## Between\n# World\n'
+  /* # foo\n\n## bar\n\n# baz\n' */
 ```
+
+[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![David](https://img.shields.io/david/mrzmmr/remark-behead.svg)](https://david-dm.org/)
+[![David](https://img.shields.io/david/dev/mrzmmr/remark-behead.svg)](https://david-dm.org/)
+
 
 ## Tests
 
@@ -101,26 +127,6 @@ npm test
 
 PRs accepted and greatly appreciated.
 
-
-## Dependencies
-
-- [lodash.defaultsdeep](https://github.com/lodash/lodash): The lodash method `_.defaultsDeep` exported as a module.
-- [remark](https://github.com/wooorm/remark/tree/master/packages): Markdown processor powered by plugins
-
-## Dev Dependencies
-
-- [babel-cli](https://github.com/babel/babel/tree/master/packages): Babel command line.
-- [babel-eslint](https://github.com/babel/babel-eslint): Custom parser for ESLint
-- [babel-preset-env](https://github.com/babel/babel-preset-env): A Babel preset for each environment.
-- [codecov](https://github.com/codecov/codecov-node): Uploading report to Codecov: https://codecov.io
-- [eslint](https://github.com/eslint/eslint): An AST-based pattern checker for JavaScript.
-- [eslint-config-standard](https://github.com/feross/eslint-config-standard): JavaScript Standard Style - ESLint Shareable Config
-- [eslint-plugin-promise](https://github.com/xjamundx/eslint-plugin-promise): Enforce best practices for JavaScript promises
-- [eslint-plugin-standard](https://github.com/xjamundx/eslint-plugin-standard): ESlint Plugin for the Standard Linter
-- [nyc](https://github.com/istanbuljs/nyc): the Istanbul command line interface
-- [rimraf](https://github.com/isaacs/rimraf): A deep deletion module for node (like `rm -rf`)
-- [tap-spec](https://github.com/scottcorgan/tap-spec): Formatted TAP output like Mocha&#39;s spec reporter
-- [tape](https://github.com/substack/tape): tap-producing test harness for node and browsers
 
 
 ## License

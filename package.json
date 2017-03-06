@@ -1,20 +1,14 @@
 {
   "name": "remark-behead",
-  "version": "1.5.5",
-  "description": "Increase or decrease heading weights",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "Increase or decrease heading depth",
+  "main": "_index.js",
   "scripts": {
-    "lint": "eslint --fix src",
-    "tape": "tape test/*.js | tap-spec",
-    "babel": "src -d .",
-    "clean": "rimraf coverage .nyc_output coverage.lcov",
-    "test": "npm run lint && npm run babel && nyc npm run tape",
-    "posttest": "npm run coverage",
-    "prepublish": "npm t && npm run clean",
-    "pregit": "npm t && npm run clean",
-    "git": "git commit -a -m",
-    "postgit": "git push github master",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "pretest": "npm run babel",
+    "test": "tap test.js --coverage",
+    "posttest": "tap --coverage-report=lcov && codecov",
+    "babel": "babel index.js -o ./_index.js",
+    "postinstall": "npm run babel"
   },
   "repository": {
     "type": "git",
@@ -37,33 +31,18 @@
       "env"
     ]
   },
-  "eslintConfig": {
-    "parse": "babel-eslint",
-    "env": {
-      "node": true
-    },
-    "extends": "standard",
-    "plugins": [
-      "standard",
-      "promise"
-    ]
-  },
   "dependencies": {
-    "lodash.defaultsdeep": "^4.6.0",
-    "remark": "^6.2.0"
+    "unist-util-find": "^1.0.1",
+    "unist-util-find-all-after": "^1.0.0",
+    "unist-util-find-all-before": "^2.0.0",
+    "unist-util-find-all-between": "^1.0.1",
+    "unist-util-visit": "^1.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
-    "babel-eslint": "^7.1.1",
     "babel-preset-env": "^1.1.8",
     "codecov": "^1.0.1",
-    "eslint": "^3.14.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "nyc": "^10.1.2",
-    "rimraf": "^2.5.4",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.3"
+    "remark": "^7.0.0",
+    "tap": "^10.3.0"
   }
 }
