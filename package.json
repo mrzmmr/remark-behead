@@ -5,9 +5,9 @@
   "main": "_index.js",
   "scripts": {
     "pretest": "npm run babel",
-    "test": "tap test.js --coverage",
+    "test": "tap _test.js --coverage",
     "posttest": "tap --coverage-report=lcov && codecov",
-    "babel": "babel index.js -o ./_index.js",
+    "babel": "babel index.js -o _index.js && babel test.js -o _test.js",
     "postinstall": "npm run babel"
   },
   "repository": {
