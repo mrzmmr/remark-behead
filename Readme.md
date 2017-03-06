@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg?style=flat-square)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
 [![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/remark-behead.svg)](https://codecov.io/gh/mrzmmr/remark-behead)
-[![npm](https://img.shields.io/npm/v/remark-behead.svg)](https://www.npmjs.com/package/array-2-object.svg)
+[![npm](https://img.shields.io/npm/v/remark-behead.svg)](https://www.npmjs.com/package/remark-behead.svg)
 
 
 > Increase or decrease heading depth

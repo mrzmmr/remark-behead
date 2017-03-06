@@ -1,8 +1,8 @@
 {
   "name": "remark-behead",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Increase or decrease heading depth",
-  "main": "_index.js",
+  "main": "index.js",
   "scripts": {
     "test": "tap test.js --coverage",
     "posttest": "tap --coverage-report=lcov && codecov"
@@ -23,11 +23,6 @@
   ],
   "author": "mrzmmr",
   "license": "MIT",
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
   "dependencies": {
     "unist-util-find": "^1.0.1",
     "unist-util-find-all-after": "^1.0.0",
