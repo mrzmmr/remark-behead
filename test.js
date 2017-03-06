@@ -1,13 +1,13 @@
 'use strict'
 
-const behead = require('./_index')
-const remark = require('remark')
-const tap = require('tap')
+var remark = require('remark')
+var behead = require('./')
+var tap = require('tap')
 
-tap.test('remark-behead', (t) => {
-  let actual
+tap.test('remark-behead', function (t) {
+  var actual
 
-  t.throws(() => {
+  t.throws(function () {
     remark().use(behead, { depth: 'foo' }).processSync('# foo').toString()
     remark().use(behead, { between: {} }).processSync('# foo').toString()
     remark().use(behead, { before: {} }).processSync('# foo').toString()
@@ -22,10 +22,23 @@ tap.test('remark-behead', (t) => {
     'Expect a `number` for depth; Expect a finite index or child `node`'
   )
 
-  t.doesNotThrow(() => {
-    remark().use(behead, { after: {} }).process('# foo', (err, res) => {
-      t.equal(err.message, 'Expected node')
-    })
+  t.doesNotThrow(function () {
+    t.equal(
+      actual = remark()
+        .use(behead, { 
+          after: {type: 'heading', children: [{ value: 'foo' }]},
+          depth: 1
+        })
+        .processSync(
+        [
+          '# foo',
+          '# bar'
+        ].join('\n')
+      )
+      .toString(),
+      '# foo\n\n## bar\n',
+      actual
+    )
 
     t.equal(
       actual = remark().use(behead, { after: 0, depth: 1 }).processSync(

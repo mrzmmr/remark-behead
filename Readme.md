@@ -1,6 +1,7 @@
 # remark-behead
 
 [![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg?style=flat-square)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
+[![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/remark-behead.svg)](https://codecov.io/gh/mrzmmr/remark-behead)
 [![npm](https://img.shields.io/npm/v/remark-behead.svg)](https://www.npmjs.com/package/array-2-object.svg)
 
 
@@ -110,7 +111,6 @@ remark()
   /* # foo\n\n## bar\n\n# baz\n' */
 ```
 
-[![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/remark-behead.svg)](https://codecov.io/gh/mrzmmr/remark-behead)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![David](https://img.shields.io/david/mrzmmr/remark-behead.svg)](https://david-dm.org/)
 [![David](https://img.shields.io/david/dev/mrzmmr/remark-behead.svg)](https://david-dm.org/)

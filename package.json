@@ -4,11 +4,8 @@
   "description": "Increase or decrease heading depth",
   "main": "_index.js",
   "scripts": {
-    "pretest": "npm run babel",
-    "test": "tap _test.js --coverage",
-    "posttest": "tap --coverage-report=lcov && codecov",
-    "babel": "babel index.js -o _index.js && babel test.js -o _test.js",
-    "postinstall": "npm run babel"
+    "test": "tap test.js --coverage",
+    "posttest": "tap --coverage-report=lcov && codecov"
   },
   "repository": {
     "type": "git",
@@ -36,7 +33,6 @@
     "unist-util-find-all-after": "^1.0.0",
     "unist-util-find-all-before": "^2.0.0",
     "unist-util-find-all-between": "^1.0.1",
-    "unist-util-is": "^2.0.0",
     "unist-util-visit": "^1.1.1"
   },
   "devDependencies": {
