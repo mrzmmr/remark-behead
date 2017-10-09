@@ -33,8 +33,8 @@
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-preset-env": "^1.1.8",
-    "codecov": "^1.0.1",
-    "remark": "^7.0.0",
+    "codecov": "^2.3.0",
+    "remark": "^8.0.0",
     "tap": "^10.3.0"
   }
 }
