@@ -4,8 +4,28 @@
   "description": "Increase or decrease heading depth",
   "main": "index.js",
   "scripts": {
-    "test": "tap test.js --coverage",
-    "posttest": "tap --coverage-report=lcov && codecov"
+    "lint": "xo --fix src",
+    "test": "tap out/test.js --coverage",
+    "prebuild": "npm run lint",
+    "build": "babel src -d out --source-maps",
+    "posttest": "tap --coverage-report=lcov && codecov",
+    "clean": "rimraf out coverage coverage.lcov .nyc_output"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "xo": {
+    "space": true,
+    "semicolon": false
   },
   "repository": {
     "type": "git",
@@ -31,10 +51,12 @@
     "unist-util-visit": "^1.1.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.22.2",
-    "babel-preset-env": "^1.1.8",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "codecov": "^2.3.0",
     "remark": "^8.0.0",
-    "tap": "^10.3.0"
+    "rimraf": "^2.6.2",
+    "tap": "^10.3.0",
+    "xo": "^0.18.2"
   }
 }

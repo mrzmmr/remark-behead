@@ -1,32 +1,32 @@
 'use strict'
 
-var remark = require('remark')
-var behead = require('./')
-var tap = require('tap')
+const tap = require('tap')
+const remark = require('remark')
+const behead = require('./')
 
-tap.test('remark-behead', function (t) {
-  var actual
+tap.test('remark-behead', t => {
+  let actual
 
-  t.throws(function () {
-    remark().use(behead, { depth: 'foo' }).processSync('# foo').toString()
-    remark().use(behead, { between: {} }).processSync('# foo').toString()
-    remark().use(behead, { before: {} }).processSync('# foo').toString()
-    remark().use(behead, { after: {} }).processSync('# foo').toString()
-    remark().use(behead, { before: 0 }).processSync('# foo').toString()
-    remark().use(behead, { after: 2 }).processSync('# foo').toString()
+  t.throws(() => {
+    remark().use(behead, {depth: 'foo'}).processSync('# foo').toString()
+    remark().use(behead, {between: {}}).processSync('# foo').toString()
+    remark().use(behead, {before: {}}).processSync('# foo').toString()
+    remark().use(behead, {after: {}}).processSync('# foo').toString()
+    remark().use(behead, {before: 0}).processSync('# foo').toString()
+    remark().use(behead, {after: 2}).processSync('# foo').toString()
     remark()
-      .use(behead, { between: [ -1, 0 ] })
+      .use(behead, {between: [-1, 0]})
       .processSync('# foo')
       .toString()
   },
     'Expect a `number` for depth; Expect a finite index or child `node`'
   )
 
-  t.doesNotThrow(function () {
+  t.doesNotThrow(() => {
     t.equal(
       actual = remark()
-        .use(behead, { 
-          after: {type: 'heading', children: [{ value: 'foo' }]},
+        .use(behead, {
+          after: {type: 'heading', children: [{value: 'foo'}]},
           depth: 1
         })
         .processSync(
@@ -41,7 +41,7 @@ tap.test('remark-behead', function (t) {
     )
 
     t.equal(
-      actual = remark().use(behead, { after: 0, depth: 1 }).processSync(
+      actual = remark().use(behead, {after: 0, depth: 1}).processSync(
         [
           '# foo',
           '# bar'
@@ -53,7 +53,7 @@ tap.test('remark-behead', function (t) {
     )
 
     t.equal(
-      actual = remark().use(behead, { before: 1, depth: 1 }).processSync(
+      actual = remark().use(behead, {before: 1, depth: 1}).processSync(
         [
           '# foo',
           '# bar'
@@ -71,32 +71,32 @@ tap.test('remark-behead', function (t) {
     )
 
     t.equal(
-      actual = remark().use(behead, { depth: 1 }).processSync('# foo').toString(),
+      actual = remark().use(behead, {depth: 1}).processSync('# foo').toString(),
       '## foo\n',
       actual
     )
 
     t.equal(
-      actual = remark().use(behead, { depth: -1 }).processSync('## foo').toString(),
+      actual = remark().use(behead, {depth: -1}).processSync('## foo').toString(),
       '# foo\n',
       actual
     )
 
     t.equal(
-      actual = remark().use(behead, { depth: 100 }).processSync('## foo').toString(),
+      actual = remark().use(behead, {depth: 100}).processSync('## foo').toString(),
       '###### foo\n',
       actual
     )
 
     t.equal(
-      actual = remark().use(behead, { depth: -100 }).processSync('## foo').toString(),
+      actual = remark().use(behead, {depth: -100}).processSync('## foo').toString(),
       ' foo\n',
       actual
     )
 
     t.equal(
       actual = remark()
-        .use(behead, { after: 'foo', depth: 1 })
+        .use(behead, {after: 'foo', depth: 1})
         .processSync('# foo\n# bar')
         .toString(),
       '# foo\n\n## bar\n',
@@ -105,7 +105,7 @@ tap.test('remark-behead', function (t) {
 
     t.equal(
       actual = remark()
-        .use(behead, { before: 'bar', depth: 1 })
+        .use(behead, {before: 'bar', depth: 1})
         .processSync('# foo\n# bar')
         .toString(),
       '## foo\n\n# bar\n',
@@ -114,7 +114,7 @@ tap.test('remark-behead', function (t) {
 
     t.equal(
       actual = remark()
-        .use(behead, { between: [ 'foo', 'baz' ], depth: 1 })
+        .use(behead, {between: ['foo', 'baz'], depth: 1})
         .processSync([
           '# foo',
           '# bar',
