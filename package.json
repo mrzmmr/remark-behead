@@ -4,12 +4,13 @@
   "description": "Increase or decrease heading depth",
   "main": "index.js",
   "scripts": {
-    "lint": "xo --fix src",
-    "test": "tap out/test.js --coverage",
+    "lint": "xo --fix src/*/*",
+    "pretest": "npm run build",
     "prebuild": "npm run lint",
-    "build": "babel src -d out --source-maps",
-    "posttest": "tap --coverage-report=lcov && codecov",
-    "clean": "rimraf out coverage coverage.lcov .nyc_output"
+    "build": "babel src -d . --source-maps",
+    "tap": "tap test/*.js",
+    "test": "nyc --source-map npm run tap && codecov",
+    "clean": "rimraf test index* coverage .nyc_output"
   },
   "babel": {
     "presets": [

@@ -36,21 +36,13 @@ module.exports = function (options) {
 
   function transformer(tree) {
     if (settings.after || settings.after === 0) {
-      findAllAfter(
-        tree,
-        getNode(tree, settings.after),
-        n => {
-          return transform(n)
-        }
-      )
+      findAllAfter(tree, getNode(tree, settings.after), n => {
+        return transform(n)
+      })
     } else if (settings.before) {
-      findAllBefore(
-        tree,
-        getNode(tree, settings.before),
-        n => {
-          return transform(n)
-        }
-      )
+      findAllBefore(tree, getNode(tree, settings.before), n => {
+        return transform(n)
+      })
     } else if (settings.between) {
       findAllBetween(
         tree,
