@@ -4,6 +4,11 @@ logs
 npm-debug.log*
 .DS_Store
 
+# Transpiled
+index.js.map
+test
+out
+
 # Runtime data
 pids
 *.pid
