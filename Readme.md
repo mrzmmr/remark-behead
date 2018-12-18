@@ -1,8 +1,7 @@
 # remark-behead
 
-[![Build Status](https://img.shields.io/circleci/project/mrzmmr/remark-behead/master.svg?style=flat-square)](https://circleci.com/gh/mrzmmr/remark-behead/tree/master)
-[![Codecov](https://img.shields.io/codecov/c/github/mrzmmr/remark-behead.svg)](https://codecov.io/gh/mrzmmr/remark-behead)
-[![npm](https://img.shields.io/npm/v/remark-behead.svg)](https://www.npmjs.com/package/remark-behead.svg)
+[![Build Status](https://travis-ci.org/mrzmmr/remark-behead.svg?branch=master)](https://travis-ci.org/mrzmmr/remark-behead)
+[![Coverage Status](https://coveralls.io/repos/github/mrzmmr/remark-behead/badge.svg?branch=master)](https://coveralls.io/github/mrzmmr/remark-behead?branch=master)
 
 
 > Increase or decrease heading depth

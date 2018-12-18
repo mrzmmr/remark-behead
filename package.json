@@ -8,8 +8,9 @@
     "pretest": "npm run build",
     "prebuild": "npm run lint",
     "build": "babel src -d . --source-maps",
-    "tap": "tap test/*.js",
-    "test": "nyc --source-map npm run tap && codecov",
+    "tap": "tap -Rspec test/*.js",
+    "test": "nyc npm run tap",
+    "report": "nyc report --reporter=text-lcov | coveralls",
     "clean": "rimraf test index* coverage .nyc_output"
   },
   "babel": {
@@ -54,7 +55,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "codecov": "^3.1.0",
+    "coveralls": "^3.0.2",
     "nyc": "^13.1.0",
     "remark": "^8.0.0",
     "rimraf": "^2.6.2",
