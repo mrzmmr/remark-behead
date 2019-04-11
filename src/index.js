@@ -16,8 +16,8 @@ module.exports = function (options) {
       const depth = node.depth + settings.depth
       if (depth > 6) {
         node.depth = 6
-      } else if (depth < 0) {
-        node.depth = 0
+	  } else if (depth <= 0) {
+        node.depth = 1
       } else {
         node.depth = depth
       }

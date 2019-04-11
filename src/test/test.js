@@ -39,6 +39,7 @@ tap.test('remark-behead', t => {
   }, 'Expect a `number` for depth; Expect a finite index or child `node`')
 
   t.doesNotThrow(() => {
+    t.ok(remark().use(behead).freeze())
     t.equal(
       (actual = remark()
         .use(behead, {
@@ -110,7 +111,7 @@ tap.test('remark-behead', t => {
         .use(behead, {depth: -100})
         .processSync('## foo')
         .toString()),
-      ' foo\n',
+      '# foo\n',
       actual
     )
 
