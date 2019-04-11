@@ -16,7 +16,7 @@
   "babel": {
     "presets": [
       [
-        "env",
+        "@babel/preset-env",
         {
           "targets": {
             "node": "current"
@@ -53,8 +53,9 @@
     "unist-util-visit": "^1.1.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "coveralls": "^3.0.2",
     "nyc": "^13.1.0",
     "remark": "^8.0.0",
