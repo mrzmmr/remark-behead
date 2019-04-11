@@ -3,27 +3,13 @@
   "version": "2.2.0",
   "description": "Increase or decrease heading depth",
   "main": "index.js",
-  "scripts": {
-    "lint": "xo --fix src/*/*",
-    "pretest": "npm run build",
-    "prebuild": "npm run lint",
-    "build": "babel src -d . --source-maps",
-    "tap": "tap -Rspec test/*.js",
-    "test": "nyc npm run tap",
-    "report": "nyc report --reporter=text-lcov | coveralls",
-    "clean": "rimraf test index* coverage .nyc_output"
+  "engines": {
+    "node": ">=6"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
+  "scripts": {
+    "lint": "xo --fix",
+    "test": "tap -Rspec --cov test.js",
+    "report": "nyc report --reporter=text-lcov | coveralls"
   },
   "xo": {
     "space": true,
@@ -53,13 +39,8 @@
     "unist-util-visit": "^1.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
     "coveralls": "^3.0.2",
-    "nyc": "^13.1.0",
     "remark": "^8.0.0",
-    "rimraf": "^2.6.2",
     "tap": "^12.1.1",
     "xo": "^0.23.0"
   }
