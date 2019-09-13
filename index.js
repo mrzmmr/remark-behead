@@ -47,7 +47,7 @@ module.exports = function (options) {
 		} else if (settings.between) {
 			findAllBetween(
 				tree,
-				tree.children.indexOf(getNode(tree, settings.between[0])) + 1,
+				tree.children.indexOf(getNode(tree, settings.between[0])),
 				getNode(tree, settings.between[1]),
 				n => {
 					return transform(n);
