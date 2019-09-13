@@ -31,13 +31,13 @@
 		"unist-util-find": "^1.0.1",
 		"unist-util-find-all-after": "^1.0.0",
 		"unist-util-find-all-before": "^2.0.0",
-		"unist-util-find-all-between": "^1.0.1",
-		"unist-util-visit": "^1.1.1"
+		"unist-util-find-all-between": "^2.0.0",
+		"unist-util-visit": "^2.0.0"
 	},
 	"devDependencies": {
 		"coveralls": "^3.0.2",
-		"remark": "^8.0.0",
-		"tap": "^12.1.1",
-		"xo": "^0.23.0"
+		"remark": "^11.0.1",
+		"tap": "^14.6.2",
+		"xo": "^0.24.0"
 	}
 }
