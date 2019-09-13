@@ -4,7 +4,7 @@
 	"description": "Increase or decrease heading depth",
 	"main": "index.js",
 	"engines": {
-		"node": ">=6"
+		"node": ">=8"
 	},
 	"scripts": {
 		"lint": "xo --fix",
