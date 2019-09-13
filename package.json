@@ -1,47 +1,43 @@
 {
-  "name": "remark-behead",
-  "version": "2.2.1",
-  "description": "Increase or decrease heading depth",
-  "main": "index.js",
-  "engines": {
-    "node": ">=6"
-  },
-  "scripts": {
-    "lint": "xo --fix",
-    "test": "tap -Rspec --cov test.js",
-    "report": "nyc report --reporter=text-lcov | coveralls"
-  },
-  "xo": {
-    "space": true,
-    "semicolon": false
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mrzmmr/remark-behead.git"
-  },
-  "keywords": [
-    "mdast",
-    "remark",
-    "behead",
-    "plugin",
-    "mdast-plugin",
-    "mdast-behead",
-    "remark-plugin",
-    "remark-behead"
-  ],
-  "author": "mrzmmr",
-  "license": "MIT",
-  "dependencies": {
-    "unist-util-find": "^1.0.1",
-    "unist-util-find-all-after": "^1.0.0",
-    "unist-util-find-all-before": "^2.0.0",
-    "unist-util-find-all-between": "^1.0.1",
-    "unist-util-visit": "^1.1.1"
-  },
-  "devDependencies": {
-    "coveralls": "^3.0.2",
-    "remark": "^8.0.0",
-    "tap": "^12.1.1",
-    "xo": "^0.23.0"
-  }
+	"name": "remark-behead",
+	"version": "2.2.1",
+	"description": "Increase or decrease heading depth",
+	"main": "index.js",
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"lint": "xo --fix",
+		"test": "tap -Rspec --cov test.js",
+		"report": "nyc report --reporter=text-lcov | coveralls"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mrzmmr/remark-behead.git"
+	},
+	"keywords": [
+		"mdast",
+		"remark",
+		"behead",
+		"plugin",
+		"mdast-plugin",
+		"mdast-behead",
+		"remark-plugin",
+		"remark-behead"
+	],
+	"author": "mrzmmr",
+	"license": "MIT",
+	"dependencies": {
+		"unist-util-find": "^1.0.1",
+		"unist-util-find-all-after": "^1.0.0",
+		"unist-util-find-all-before": "^2.0.0",
+		"unist-util-find-all-between": "^1.0.1",
+		"unist-util-visit": "^1.1.1"
+	},
+	"devDependencies": {
+		"coveralls": "^3.0.2",
+		"remark": "^8.0.0",
+		"tap": "^12.1.1",
+		"xo": "^0.23.0"
+	}
 }
