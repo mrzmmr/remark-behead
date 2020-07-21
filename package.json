@@ -7,7 +7,6 @@
 		"node": ">=8"
 	},
 	"scripts": {
-		"lint": "xo --fix",
 		"test": "tap -Rspec --cov test.js",
 		"report": "nyc report --reporter=text-lcov | coveralls"
 	},
@@ -37,7 +36,6 @@
 	"devDependencies": {
 		"coveralls": "^3.0.2",
 		"remark": "^11.0.1",
-		"tap": "^14.10.7",
-		"xo": "^0.24.0"
+		"tap": "^14.10.7"
 	}
 }
