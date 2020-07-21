@@ -1,6 +1,6 @@
 {
 	"name": "remark-behead",
-	"version": "2.3.2",
+	"version": "2.3.3",
 	"description": "Increase or decrease heading depth",
 	"main": "index.js",
 	"engines": {
