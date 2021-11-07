@@ -1,12 +1,10 @@
-'use strict';
+import findAllBetween from 'unist-util-find-all-between';
+import {findAllBefore} from 'unist-util-find-all-before';
+import {findAllAfter} from 'unist-util-find-all-after';
+import {visit} from 'unist-util-visit';
+import find from 'unist-util-find';
 
-const findAllBetween = require('unist-util-find-all-between');
-const findAllBefore = require('unist-util-find-all-before');
-const findAllAfter = require('unist-util-find-all-after');
-const visit = require('unist-util-visit');
-const find = require('unist-util-find');
-
-module.exports = function (options) {
+export default function (options) {
 	const settings = options || {};
 
 	function transform(node) {
