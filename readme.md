@@ -27,7 +27,7 @@ npm install --save remark-behead
 
 ```js
 import behead from 'remark-behead'
-import remark from 'remark'
+import {remark} from 'remark'
 
 remark()
   .use(behead, { after: 0, depth: 1 })
