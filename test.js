@@ -1,5 +1,3 @@
-'use strict';
-
 import tap from 'tap';
 import {remark} from 'remark';
 import behead from './index.js';
