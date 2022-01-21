@@ -1,8 +1,6 @@
-'use strict';
-
-const tap = require('tap');
-const remark = require('remark');
-const behead = require('.');
+import tap from 'tap';
+import {remark} from 'remark';
+import behead from './index.js';
 
 tap.test('remark-behead', t => {
 	let actual;
