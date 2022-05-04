@@ -9,6 +9,9 @@ index.js.map
 test
 out
 
+# Type Declarations
+index.d.ts
+
 # Runtime data
 pids
 *.pid
